@@ -82,6 +82,9 @@
         <script src="${resourceUrl}/node_modules/react/umd/react.development.js" crossorigin></script>
         <script src="${resourceUrl}/node_modules/react-dom/umd/react-dom.development.js" crossorigin></script>
         <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
         </#if>
 
         <#if properties.extensions?has_content>
@@ -109,7 +112,6 @@
             <link href="${resourceUrl}/${style}" rel="stylesheet"/>
             </#list>
         </#if>
-
         
         <link rel="stylesheet" type="text/css" href="${resourceCommonUrl}/web_modules/@patternfly/react-core/dist/styles/base.css"/>
         <link rel="stylesheet" type="text/css" href="${resourceCommonUrl}/web_modules/@patternfly/react-core/dist/styles/app.css"/>

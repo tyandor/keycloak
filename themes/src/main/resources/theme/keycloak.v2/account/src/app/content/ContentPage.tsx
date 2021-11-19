@@ -46,11 +46,11 @@ export class ContentPage extends React.Component<ContentPageProps> {
               <Split>
                 <SplitItem isFilled>
                   <TextContent>
-                    <Title headingLevel="h1" size="2xl" className="pf-u-mb-xl">
+                    <Title headingLevel="h1" size="2xl" className="pf-u-mb-lg">
                       <Msg msgKey={this.props.title} />
                     </Title>
                     {this.props.introMessage && (
-                      <Text component="p">
+                      <Text component="p" className="pf-u-mb-xl">
                         <Msg msgKey={this.props.introMessage} />
                       </Text>
                     )}
