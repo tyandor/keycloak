@@ -22,6 +22,7 @@ import TimeUtil from '../../util/TimeUtil';
 
 import {
   Bullseye,
+  Button,
   DataList,
   DataListItem,
   DataListItemRow,
@@ -33,7 +34,8 @@ import {
   PageSection,
   PageSectionVariants,
   Stack,
-  StackItem
+  StackItem,
+  Tooltip
 } from '@patternfly/react-core';
 
 import {
@@ -45,6 +47,7 @@ import {
         InternetExplorerIcon,
         OperaIcon,
         SafariIcon,
+        SyncAltIcon,
         YandexInternationalIcon,
 } from '@patternfly/react-icons';
 
@@ -57,6 +60,7 @@ import {ContentPage} from '../ContentPage';
 import { ContentAlert } from '../ContentAlert';
 
 export interface DeviceActivityPageProps {
+  onRefresh?: () => void;
 }
 
 export interface DeviceActivityPageState {
@@ -223,42 +227,55 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
     public render(): React.ReactNode {
 
       return (
-        <ContentPage title="device-activity" onRefresh={this.fetchDevices.bind(this)}>
-          <PageSection isFilled variant={PageSectionVariants.light}>
-            <Stack hasGutter>
-              <DataList aria-label={Msg.localize('signedInDevices')}>
-                <DataListItem key="SignedInDevicesHeader" aria-labelledby="signedInDevicesTitle" isExpanded={false}>
-                  <DataListItemRow>
-                    <DataListItemCells
-                      dataListCells={[
-                        <DataListCell key='signedInDevicesTitle' width={4}>
-                          <div id="signedInDevicesTitle" className="pf-c-content">
-                            <h2><Msg msgKey="signedInDevices"/></h2>
-                            <p>
-                              <Msg msgKey="signedInDevicesExplanation"/>
-                            </p>
-                          </div>
-                        </DataListCell>,
-                        <KeycloakContext.Consumer>
-                          { (keycloak: KeycloakService) => (
-                            <DataListCell key='signOutAllButton' width={1}>
-                              {this.isShowSignOutAll(this.state.devices) &&
-                              <ContinueCancelModal buttonTitle='signOutAllDevices'
-                                buttonId='sign-out-all'
-                                modalTitle='signOutAllDevices'
-                                modalMessage='signOutAllDevicesWarning'
-                                onContinue={() => this.signOutAll(keycloak)}
-                              />
-                              }
-                            </DataListCell>
-                          )}
-                        </KeycloakContext.Consumer>
-                      ]}
-                    />
-                  </DataListItemRow>
-                </DataListItem>
+          <ContentPage 
+            title="device-activity" 
+            introMessage="signedInDevicesExplanation" 
+            // onRefresh={this.fetchDevices.bind(this)}
+          >
+            <PageSection isFilled variant={PageSectionVariants.light}>
+            <DataList aria-label={Msg.localize('signedInDevices')}>
+                  <DataListItem key="SignedInDevicesHeader" aria-labelledby="signedInDevicesTitle" isExpanded={false}>
+                      <DataListItemRow>
+                          <DataListItemCells
+                              dataListCells={[
+                                <DataListCell key='signedInDevicesTitle' width={4}>
+                                  <div id="signedInDevicesTitle" className="pf-c-content">
+                                      <h2><Msg msgKey="signedInDevices"/></h2>
+                                  </div>
+                                </DataListCell>,
+                                <KeycloakContext.Consumer>
+                                { (keycloak: KeycloakService) => (
+                                  <DataListCell key='signOutAllButton' width={1}>
+                                    {this.isShowSignOutAll(this.state.devices) &&
+                                      <ContinueCancelModal buttonTitle='signOutAllDevices'
+                                                    buttonId='sign-out-all'
+                                                    modalTitle='signOutAllDevices'
+                                                    modalMessage='signOutAllDevicesWarning'
+                                                    onContinue={() => this.signOutAll(keycloak)}
+                                      />
+                                    }
+                                  </DataListCell>
+                                )}
+                                </KeycloakContext.Consumer>,
+                                <DataListCell>
+                                  <Tooltip content={<Msg msgKey="refreshPage" />}>
+                                    <Button
+                                      aria-describedby="refresh page"
+                                      id="refresh-page"
+                                      variant="link"
+                                      onClick={this.fetchDevices.bind(this)}
+                                      icon={<SyncAltIcon />}
+                                    >
+                                      Refresh
+                                    </Button>
+                                  </Tooltip>
+                                </DataListCell>
+                              ]}
+                          />
+                      </DataListItemRow>
+                  </DataListItem>
 
-                <DataListItem aria-labelledby='sessions'>
+                  <DataListItem aria-labelledby='sessions'>
                   <DataListItemRow>
                     <Grid hasGutter={true}>
                       <GridItem span={12} /> {/* <-- top spacing */}
@@ -278,9 +295,9 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
                                         <Bullseye id={this.elementId('ip', session)}>{session.ipAddress}</Bullseye>
                                       </StackItem>
                                       {session.current &&
-                                      <StackItem isFilled={false}>
-                                        <Label><strong className='pf-c-badge pf-m-read'><Msg msgKey="currentSession" /></strong></Label>
-                                      </StackItem>
+                                        <StackItem isFilled={false}>
+                                          <Label color="green"><Msg msgKey="currentSession" /></Label>
+                                        </StackItem>
                                       }
                                     </Stack>
                                   </GridItem>
@@ -314,9 +331,8 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
                   </DataListItemRow>
                 </DataListItem>
               </DataList>
-            </Stack>
-          </PageSection>
-        </ContentPage>
+            </PageSection>
+          </ContentPage>
         );
     }
 };
