@@ -23,3 +23,8 @@
   --pf-c-content--heading--FontFamily: "Red Hat Text", Overpass, overpass, helvetica, arial, sans-serif;
 }
 /* End TODO */
+
+/* Device Activity screen */
+#device-activity-sessions dl {
+  --pf-c-description-list--GridTemplateColumns--count: 5;
+}

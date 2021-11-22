@@ -28,6 +28,10 @@ import {
   DataListItemRow,
   DataListCell,
   DataListItemCells,
+  DescriptionList,
+  DescriptionListTerm,
+  DescriptionListDescription,
+  DescriptionListGroup,
   Grid,
   GridItem,
   Label,
@@ -174,14 +178,14 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
 
     private findBrowserIcon(session: Session): React.ReactNode {
       const browserName: string = session.browser.toLowerCase();
-      if (browserName.includes("chrom")) return (<ChromeIcon id={this.elementId('icon-chrome', session)} size='lg'/>); // chrome or chromium
-      if (browserName.includes("firefox")) return (<FirefoxIcon id={this.elementId('icon-firefox', session)} size='lg'/>);
-      if (browserName.includes("edge")) return (<EdgeIcon id={this.elementId('icon-edge', session)} size='lg'/>);
-      if (browserName.startsWith("ie/")) return (<InternetExplorerIcon id={this.elementId('icon-ie', session)} size='lg'/>);
-      if (browserName.includes("safari")) return (<SafariIcon id={this.elementId('icon-safari', session)} size='lg'/>);
-      if (browserName.includes("opera")) return (<OperaIcon id={this.elementId('icon-opera', session)} size='lg'/>);
-      if (browserName.includes("yandex")) return (<YandexInternationalIcon id={this.elementId('icon-yandex', session)} size='lg'/>);
-      if (browserName.includes("amazon")) return (<AmazonIcon id={this.elementId('icon-amazon', session)} size='lg'/>);
+      if (browserName.includes("chrom")) return (<ChromeIcon id={this.elementId('icon-chrome', session)} size='md'/>); // chrome or chromium
+      if (browserName.includes("firefox")) return (<FirefoxIcon id={this.elementId('icon-firefox', session)} size='md'/>);
+      if (browserName.includes("edge")) return (<EdgeIcon id={this.elementId('icon-edge', session)} size='md'/>);
+      if (browserName.startsWith("ie/")) return (<InternetExplorerIcon id={this.elementId('icon-ie', session)} size='md'/>);
+      if (browserName.includes("safari")) return (<SafariIcon id={this.elementId('icon-safari', session)} size='md'/>);
+      if (browserName.includes("opera")) return (<OperaIcon id={this.elementId('icon-opera', session)} size='md'/>);
+      if (browserName.includes("yandex")) return (<YandexInternationalIcon id={this.elementId('icon-yandex', session)} size='md'/>);
+      if (browserName.includes("amazon")) return (<AmazonIcon id={this.elementId('icon-amazon', session)} size='md'/>);
 
       return (<GlobeIcon id={this.elementId('icon-default', session)} size='lg'/>);
     }
@@ -230,7 +234,6 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
           <ContentPage 
             title="device-activity" 
             introMessage="signedInDevicesExplanation" 
-            // onRefresh={this.fetchDevices.bind(this)}
           >
             <PageSection isFilled variant={PageSectionVariants.light}>
             <DataList aria-label={Msg.localize('signedInDevices')}>
@@ -273,6 +276,75 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
                               ]}
                           />
                       </DataListItemRow>
+                  </DataListItem>
+
+                  <DataListItem aria-labelledby='sessions' id='device-activity-sessions'>
+                  {this.state.devices.map((device: Device, deviceIndex: number) => {
+                    return (
+                      <React.Fragment>
+                        {device.sessions.map((session: Session, sessionIndex: number) => {
+                          return (
+                            <React.Fragment key={'device-' + deviceIndex + '-session-' + sessionIndex}>
+                              <DataListItemRow>
+                                <div id="DCL1" className="pf-c-content pf-u-mt-lg">
+                                  <span className="pf-u-mr-sm">{this.findBrowserIcon(session)}</span>
+                                </div>
+                                <DataListCell key='' width={5}>
+                                  <div id="DCL2" className="pf-c-content">
+                                    <span id={this.elementId('browser', session)} className="pf-u-mr-md">{this.findOS(device)} {this.findOSVersion(device)} / {session.browser}</span>
+                                    {session.current &&
+                                      <Label color="green"><Msg msgKey="currentSession" /></Label>}
+                                  </div>
+                                </DataListCell>
+                              </DataListItemRow>
+                              <DataListItemRow>
+                                <div id="DCL3" className="pf-c-content">
+                                  <span className="pf-u-mr-xl"></span>
+                                </div>
+                                <Grid hasGutter={true}>
+                                  <GridItem span={12} /> {/* <-- top spacing */}
+
+                                  <DescriptionList>
+                                    <DescriptionListGroup>
+                                      <DescriptionListTerm>{Msg.localize('ipAddress')}</DescriptionListTerm>
+                                      <DescriptionListDescription>{session.ipAddress}</DescriptionListDescription>
+                                    </DescriptionListGroup>
+                                    <DescriptionListGroup>
+                                      <DescriptionListTerm>{Msg.localize('lastAccessedOn')}</DescriptionListTerm>
+                                      <DescriptionListDescription>{this.time(session.lastAccess)}</DescriptionListDescription>
+                                    </DescriptionListGroup>
+                                    <DescriptionListGroup>
+                                      <DescriptionListTerm>{Msg.localize('clients')}</DescriptionListTerm>
+                                      <DescriptionListDescription>{this.makeClientsString(session.clients)}</DescriptionListDescription>
+                                    </DescriptionListGroup>
+                                    <DescriptionListGroup>
+                                      <DescriptionListTerm>{Msg.localize('started')}</DescriptionListTerm>
+                                      <DescriptionListDescription>{this.time(session.started)}</DescriptionListDescription>
+                                    </DescriptionListGroup>
+                                    <DescriptionListGroup>
+                                      <DescriptionListTerm>{Msg.localize('expires')}</DescriptionListTerm>
+                                      <DescriptionListDescription>{this.time(session.expires)}</DescriptionListDescription>
+                                    </DescriptionListGroup>
+                                  </DescriptionList>
+                                  {!session.current &&
+                                    <ContinueCancelModal buttonTitle='doSignOut'
+                                      buttonId={this.elementId('sign-out', session)}
+                                      modalTitle='doSignOut'
+                                      buttonVariant='secondary'
+                                      modalMessage='signOutWarning'
+                                      onContinue={() => this.signOutSession(device, session)}
+                                    />
+                                  }
+
+                                  <GridItem span={12} /> {/* <-- bottom spacing */}
+                                </Grid>
+                              </DataListItemRow>
+                            </React.Fragment>
+                          );
+                        })}
+                      </React.Fragment>
+                    )
+                  })}
                   </DataListItem>
 
                   <DataListItem aria-labelledby='sessions'>
