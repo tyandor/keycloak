@@ -359,7 +359,7 @@ class CredentialAction extends React.Component<CredentialActionProps> {
         if (this.props.updateAction) {
             return (
                 <DataListAction aria-labelledby='foo' aria-label='foo action' id={'updateAction-' + this.props.credential.id}>
-                    <Button id={`${SigningInPage.credElementId(this.props.credential.type, this.props.credential.id, 'update')}`} variant='primary'onClick={()=> this.props.updateAction.execute()}><Msg msgKey='update'/></Button>
+                    <Button variant='secondary' id={`${SigningInPage.credElementId(this.props.credential.type, this.props.credential.id, 'update')}`} onClick={()=> this.props.updateAction.execute()}><Msg msgKey='update'/></Button>
                 </DataListAction>
             )
         }
@@ -369,6 +369,7 @@ class CredentialAction extends React.Component<CredentialActionProps> {
             return (
                 <DataListAction aria-labelledby='foo' aria-label='foo action' id={'removeAction-' + this.props.credential.id }>
                     <ContinueCancelModal buttonTitle='remove'
+                                        buttonVariant='danger'
                                         buttonId={`${SigningInPage.credElementId(this.props.credential.type, this.props.credential.id, 'remove')}`}
                                         modalTitle={Msg.localize('removeCred', [userLabel])}
                                         modalMessage={Msg.localize('stopUsingCred', [userLabel])}
