@@ -15,6 +15,10 @@
 
 }
 
+.pf-c-data-list{
+  --pf-c-data-list--BorderTopWidth: 0rem;
+}
+
 /* TODO: remove pre-release, these are just to get rh font working on localhost */
 :root {
   --pf-global--FontFamily--sans-serif:  "Red Hat Text", Overpass, overpass, helvetica, arial, sans-serif;

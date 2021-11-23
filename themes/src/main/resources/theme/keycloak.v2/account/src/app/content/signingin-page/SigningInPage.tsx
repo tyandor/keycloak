@@ -161,7 +161,7 @@ class SigningInPage extends React.Component<SigningInPageProps, SigningInPageSta
         return (<> {
             Array.from(this.state.credentialContainers.keys()).map(category => (
                 <StackItem key={category}>
-                    <Card>
+                    <Card isPlain>
                         <DataList aria-label='foo'>
                             {this.renderTypes(category!)}
                         </DataList>
