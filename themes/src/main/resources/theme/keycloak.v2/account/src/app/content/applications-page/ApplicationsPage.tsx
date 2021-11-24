@@ -24,6 +24,7 @@ import {
   DataListToggle,
   DataListContent,
   DataListItemCells,
+  Divider,
   Grid,
   GridItem,
   Button,
@@ -120,6 +121,7 @@ export class ApplicationsPage extends React.Component<ApplicationsPageProps, App
     return (
       <ContentPage title={Msg.localize('applicationsPageTitle')}>
         <PageSection isFilled variant={PageSectionVariants.light}>
+          <Divider />
           <Stack hasGutter>
             <DataList id="applications-list" aria-label={Msg.localize('applicationsPageTitle')} isCompact>
               <DataListItem id="applications-list-header" aria-labelledby="Columns names">

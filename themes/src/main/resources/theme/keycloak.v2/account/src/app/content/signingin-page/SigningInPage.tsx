@@ -282,18 +282,17 @@ class SigningInPage extends React.Component<SigningInPageProps, SigningInPageSta
         return (
             <React.Fragment key={'credTypeTitle-' + credContainer.type}>
                 <DataListItem aria-labelledby={'type-datalistitem-' + credContainer.type}>
-
                       <CardTitle>
                         <Title id={`${category}-categ-title`} headingLevel="h2" size="2xl">
                             <strong><Msg msgKey={category}/></strong>
                         </Title>
                       </CardTitle>
 
-                    <DataListItemRow key={'credTitleRow-' + credContainer.type}>
+                    <DataListItemRow className="pf-u-pl-0" key={'credTitleRow-' + credContainer.type}>
                         <DataListItemCells
                             dataListCells={[
                                 <DataListCell width={5} key={'credTypeTitle-' + credContainer.type}>
-                                    <Title headingLevel="h3" size='xl'>
+                                    <Title headingLevel="h3" size='xl' className="pf-u-mb-md">
                                         <strong id={`${credContainer.type}-cred-title`}><Msg msgKey={credContainer.displayName}/></strong>
                                     </Title>
                                     <span id={`${credContainer.type}-cred-help`}>

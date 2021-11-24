@@ -15,11 +15,7 @@
 
 }
 
-@media screen and (min-width: 768px) and (min-width: 1200px){
-  .pf-c-data-list.pf-m-grid-md{
-    --pf-c-data-list__item-row--PaddingLeft: 0rem;
-  }
-}
+
 
 .pf-c-data-list{
   --pf-c-data-list--BorderTopWidth: 0rem;
