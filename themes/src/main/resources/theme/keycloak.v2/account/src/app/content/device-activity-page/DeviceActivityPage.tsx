@@ -45,10 +45,12 @@ import {
 import {
         AmazonIcon,
         ChromeIcon,
+        DesktopIcon,
         EdgeIcon,
         FirefoxIcon,
         GlobeIcon,
         InternetExplorerIcon,
+        MobileAltIcon,
         OperaIcon,
         SafariIcon,
         SyncAltIcon,
@@ -172,8 +174,8 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
       return TimeUtil.format(time * 1000);
     }
 
-    private elementId(item: string, session: Session): string {
-        return `session-${session.id.substring(0,7)}-${item}`;
+    private elementId(item: string, session: Session, element: string='session'): string {
+        return `${element}-${session.id.substring(0,7)}-${item}`;
     }
 
     private findBrowserIcon(session: Session): React.ReactNode {
@@ -188,6 +190,13 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
       if (browserName.includes("amazon")) return (<AmazonIcon id={this.elementId('icon-amazon', session)} size='md'/>);
 
       return (<GlobeIcon id={this.elementId('icon-default', session)} size='lg'/>);
+    }
+
+    private findDeviceTypeIcon(session: Session, device: Device): React.ReactNode {
+      const deviceType: boolean = device.mobile;
+      if (deviceType === true) return (<MobileAltIcon id={this.elementId('icon-mobile', session, 'device')} />);
+
+      return (<DesktopIcon id={this.elementId('icon-desktop', session, 'device')} />);
     }
 
     private findOS(device: Device): string {
@@ -246,9 +255,22 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
                                       <h2><Msg msgKey="signedInDevices"/></h2>
                                   </div>
                                 </DataListCell>,
+                                <DataListCell alignRight isFilled={false}>
+                                <Tooltip content={<Msg msgKey="refreshPage" />}>
+                                  <Button
+                                    aria-describedby="refresh page"
+                                    id="refresh-page"
+                                    variant="link"
+                                    onClick={this.fetchDevices.bind(this)}
+                                    icon={<SyncAltIcon />}
+                                  >
+                                    Refresh
+                                  </Button>
+                                </Tooltip>
+                              </DataListCell>,
                                 <KeycloakContext.Consumer>
                                 { (keycloak: KeycloakService) => (
-                                  <DataListCell key='signOutAllButton' width={1}>
+                                  <DataListCell key='signOutAllButton' width={1} alignRight isFilled={false}>
                                     {this.isShowSignOutAll(this.state.devices) &&
                                       <ContinueCancelModal buttonTitle='signOutAllDevices'
                                                     buttonId='sign-out-all'
@@ -259,149 +281,80 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
                                     }
                                   </DataListCell>
                                 )}
-                                </KeycloakContext.Consumer>,
-                                <DataListCell>
-                                  <Tooltip content={<Msg msgKey="refreshPage" />}>
-                                    <Button
-                                      aria-describedby="refresh page"
-                                      id="refresh-page"
-                                      variant="link"
-                                      onClick={this.fetchDevices.bind(this)}
-                                      icon={<SyncAltIcon />}
-                                    >
-                                      Refresh
-                                    </Button>
-                                  </Tooltip>
-                                </DataListCell>
+                                </KeycloakContext.Consumer>
                               ]}
                           />
                       </DataListItemRow>
                   </DataListItem>
 
                   <DataListItem aria-labelledby='sessions' id='device-activity-sessions'>
-                  {this.state.devices.map((device: Device, deviceIndex: number) => {
-                    return (
-                      <React.Fragment>
-                        {device.sessions.map((session: Session, sessionIndex: number) => {
-                          return (
-                            <React.Fragment key={'device-' + deviceIndex + '-session-' + sessionIndex}>
-                              <DataListItemRow>
-                                <div id="DCL1" className="pf-c-content pf-u-mt-lg">
-                                  <span className="pf-u-mr-sm">{this.findBrowserIcon(session)}</span>
-                                </div>
-                                <DataListCell key='' width={5}>
-                                  <div id="DCL2" className="pf-c-content">
-                                    <span id={this.elementId('browser', session)} className="pf-u-mr-md">{this.findOS(device)} {this.findOSVersion(device)} / {session.browser}</span>
-                                    {session.current &&
-                                      <Label color="green"><Msg msgKey="currentSession" /></Label>}
+                    {this.state.devices.map((device: Device, deviceIndex: number) => {
+                      return (
+                        <React.Fragment>
+                          {device.sessions.map((session: Session, sessionIndex: number) => {
+                            return (
+                              <React.Fragment key={'device-' + deviceIndex + '-session-' + sessionIndex}>
+                                <DataListItemRow>
+                                  <div id="DCL1" className="pf-c-content pf-u-mt-lg">
+                                    <span className="pf-u-mr-sm">{this.findDeviceTypeIcon(session, device)}</span>
                                   </div>
-                                </DataListCell>
-                              </DataListItemRow>
-                              <DataListItemRow>
-                                <div id="DCL3" className="pf-c-content">
-                                  <span className="pf-u-mr-xl"></span>
-                                </div>
-                                <Grid hasGutter={true}>
-                                  <GridItem span={12} /> {/* <-- top spacing */}
-
-                                  <DescriptionList>
-                                    <DescriptionListGroup>
-                                      <DescriptionListTerm>{Msg.localize('ipAddress')}</DescriptionListTerm>
-                                      <DescriptionListDescription>{session.ipAddress}</DescriptionListDescription>
-                                    </DescriptionListGroup>
-                                    <DescriptionListGroup>
-                                      <DescriptionListTerm>{Msg.localize('lastAccessedOn')}</DescriptionListTerm>
-                                      <DescriptionListDescription>{this.time(session.lastAccess)}</DescriptionListDescription>
-                                    </DescriptionListGroup>
-                                    <DescriptionListGroup>
-                                      <DescriptionListTerm>{Msg.localize('clients')}</DescriptionListTerm>
-                                      <DescriptionListDescription>{this.makeClientsString(session.clients)}</DescriptionListDescription>
-                                    </DescriptionListGroup>
-                                    <DescriptionListGroup>
-                                      <DescriptionListTerm>{Msg.localize('started')}</DescriptionListTerm>
-                                      <DescriptionListDescription>{this.time(session.started)}</DescriptionListDescription>
-                                    </DescriptionListGroup>
-                                    <DescriptionListGroup>
-                                      <DescriptionListTerm>{Msg.localize('expires')}</DescriptionListTerm>
-                                      <DescriptionListDescription>{this.time(session.expires)}</DescriptionListDescription>
-                                    </DescriptionListGroup>
-                                  </DescriptionList>
-                                  {!session.current &&
-                                    <ContinueCancelModal buttonTitle='doSignOut'
-                                      buttonId={this.elementId('sign-out', session)}
-                                      modalTitle='doSignOut'
-                                      buttonVariant='secondary'
-                                      modalMessage='signOutWarning'
-                                      onContinue={() => this.signOutSession(device, session)}
-                                    />
-                                  }
-
-                                  <GridItem span={12} /> {/* <-- bottom spacing */}
-                                </Grid>
-                              </DataListItemRow>
-                            </React.Fragment>
-                          );
-                        })}
-                      </React.Fragment>
-                    )
-                  })}
-                  </DataListItem>
-
-                  <DataListItem aria-labelledby='sessions'>
-                  <DataListItemRow>
-                    <Grid hasGutter={true}>
-                      <GridItem span={12} /> {/* <-- top spacing */}
-                      {this.state.devices.map((device: Device, deviceIndex: number) => {
-                        return (
-                          <React.Fragment>
-                            {device.sessions.map((session: Session, sessionIndex: number) => {
-                              return (
-                                <React.Fragment key={'device-' + deviceIndex + '-session-' + sessionIndex}>
-
-                                  <GridItem md={3}>
-                                    <Stack>
-                                      <StackItem isFilled={false}>
-                                        <Bullseye>{this.findBrowserIcon(session)}</Bullseye>
-                                      </StackItem>
-                                      <StackItem isFilled={false}>
-                                        <Bullseye id={this.elementId('ip', session)}>{session.ipAddress}</Bullseye>
-                                      </StackItem>
+                                  <DataListCell width={5}>
+                                    <div id="device-details" className="pf-c-content">
+                                      <span id={this.elementId('browser', session)} className="pf-u-mr-md">{this.findOS(device)} {this.findOSVersion(device)} / {session.browser}</span>
                                       {session.current &&
-                                        <StackItem isFilled={false}>
-                                          <Label color="green"><Msg msgKey="currentSession" /></Label>
-                                        </StackItem>
-                                      }
-                                    </Stack>
-                                  </GridItem>
-                                  <GridItem md={9}>
-                                    {!session.browser.toLowerCase().includes('unknown') &&
-                                    <p id={this.elementId('browser', session)}><strong>{session.browser} / {this.findOS(device)} {this.findOSVersion(device)}</strong></p>}
-                                    <p id={this.elementId('last-access', session)}><strong>{Msg.localize('lastAccessedOn')}</strong> {this.time(session.lastAccess)}</p>
-                                    <p id={this.elementId('clients', session)}><strong>{Msg.localize('clients')}</strong> {this.makeClientsString(session.clients)}</p>
-                                    <p id={this.elementId('started', session)}><strong>{Msg.localize('started')}</strong> {this.time(session.started)}</p>
-                                    <p id={this.elementId('expires', session)}><strong>{Msg.localize('expires')}</strong> {this.time(session.expires)}</p>
-                                    {!session.current &&
-                                    <ContinueCancelModal buttonTitle='doSignOut'
-                                      buttonId={this.elementId('sign-out', session)}
-                                      modalTitle='doSignOut'
-                                      buttonVariant='secondary'
-                                      modalMessage='signOutWarning'
-                                      onContinue={() => this.signOutSession(device, session)}
-                                    />
-                                    }
-
-                                  </GridItem>
-                                </React.Fragment>
-                              );
-
-                            })}
-                          </React.Fragment>
-                        )
-                      })}
-                      <GridItem span={12} /> {/* <-- bottom spacing */}
-                    </Grid>
-                  </DataListItemRow>
-                </DataListItem>
+                                        <Label color="green"><Msg msgKey="currentSession" /></Label>}
+                                    </div>
+                                  </DataListCell>
+                                  {!session.current &&
+                                    <DataListCell alignRight isFilled={false}>
+                                      <ContinueCancelModal buttonTitle='doSignOut'
+                                        buttonId={this.elementId('sign-out', session)}
+                                        modalTitle='doSignOut'
+                                        buttonVariant='secondary'
+                                        modalMessage='signOutWarning'
+                                        onContinue={() => this.signOutSession(device, session)}
+                                      />
+                                    </DataListCell>
+                                  }
+                                </DataListItemRow>
+                                <DataListItemRow>
+                                  <div className="pf-c-content">
+                                    <span className="pf-u-mr-lg"></span>
+                                  </div>
+                                  <Stack hasGutter>
+                                    <StackItem className="pf-u-my-lg">
+                                      <DescriptionList>
+                                        <DescriptionListGroup>
+                                          <DescriptionListTerm>{Msg.localize('ipAddress')}</DescriptionListTerm>
+                                          <DescriptionListDescription>{session.ipAddress}</DescriptionListDescription>
+                                        </DescriptionListGroup>
+                                        <DescriptionListGroup>
+                                          <DescriptionListTerm>{Msg.localize('lastAccessedOn')}</DescriptionListTerm>
+                                          <DescriptionListDescription>{this.time(session.lastAccess)}</DescriptionListDescription>
+                                        </DescriptionListGroup>
+                                        <DescriptionListGroup>
+                                          <DescriptionListTerm>{Msg.localize('clients')}</DescriptionListTerm>
+                                          <DescriptionListDescription>{this.makeClientsString(session.clients)}</DescriptionListDescription>
+                                        </DescriptionListGroup>
+                                        <DescriptionListGroup>
+                                          <DescriptionListTerm>{Msg.localize('started')}</DescriptionListTerm>
+                                          <DescriptionListDescription>{this.time(session.started)}</DescriptionListDescription>
+                                        </DescriptionListGroup>
+                                        <DescriptionListGroup>
+                                          <DescriptionListTerm>{Msg.localize('expires')}</DescriptionListTerm>
+                                          <DescriptionListDescription>{this.time(session.expires)}</DescriptionListDescription>
+                                        </DescriptionListGroup>
+                                      </DescriptionList>
+                                    </StackItem>
+                                  </Stack>
+                                </DataListItemRow>
+                              </React.Fragment>
+                            );
+                          })}
+                        </React.Fragment>
+                      )
+                    })}
+                  </DataListItem>
               </DataList>
             </PageSection>
           </ContentPage>

@@ -27,4 +27,10 @@
 /* Device Activity screen */
 #device-activity-sessions dl {
   --pf-c-description-list--GridTemplateColumns--count: 5;
+  --pf-c-description-list--GridTemplateColumns--width: 250px;
+  /* --pf-c-description-list--GridTemplateColumns--width: minmax(1fr, 250px); */
 }
+
+#device-details.pf-c-content {
+  --pf-c-content--FontSize: var(--pf-global--FontSize--lg);
+} 
