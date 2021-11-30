@@ -178,20 +178,6 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
         return `${element}-${session.id.substring(0,7)}-${item}`;
     }
 
-    private findBrowserIcon(session: Session): React.ReactNode {
-      const browserName: string = session.browser.toLowerCase();
-      if (browserName.includes("chrom")) return (<ChromeIcon id={this.elementId('icon-chrome', session)} size='md'/>); // chrome or chromium
-      if (browserName.includes("firefox")) return (<FirefoxIcon id={this.elementId('icon-firefox', session)} size='md'/>);
-      if (browserName.includes("edge")) return (<EdgeIcon id={this.elementId('icon-edge', session)} size='md'/>);
-      if (browserName.startsWith("ie/")) return (<InternetExplorerIcon id={this.elementId('icon-ie', session)} size='md'/>);
-      if (browserName.includes("safari")) return (<SafariIcon id={this.elementId('icon-safari', session)} size='md'/>);
-      if (browserName.includes("opera")) return (<OperaIcon id={this.elementId('icon-opera', session)} size='md'/>);
-      if (browserName.includes("yandex")) return (<YandexInternationalIcon id={this.elementId('icon-yandex', session)} size='md'/>);
-      if (browserName.includes("amazon")) return (<AmazonIcon id={this.elementId('icon-amazon', session)} size='md'/>);
-
-      return (<GlobeIcon id={this.elementId('icon-default', session)} size='lg'/>);
-    }
-
     private findDeviceTypeIcon(session: Session, device: Device): React.ReactNode {
       const deviceType: boolean = device.mobile;
       if (deviceType === true) return (<MobileAltIcon id={this.elementId('icon-mobile', session, 'device')} />);
@@ -295,7 +281,7 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
                             return (
                               <React.Fragment key={'device-' + deviceIndex + '-session-' + sessionIndex}>
                                 <DataListItemRow>
-                                  <div id="DCL1" className="pf-c-content pf-u-mt-lg">
+                                  <div className="pf-c-content pf-u-mt-lg">
                                     <span className="pf-u-mr-sm">{this.findDeviceTypeIcon(session, device)}</span>
                                   </div>
                                   <DataListCell width={5}>

@@ -25,10 +25,22 @@
 /* End TODO */
 
 /* Device Activity screen */
-#device-activity-sessions dl {
-  --pf-c-description-list--GridTemplateColumns--count: 5;
-  --pf-c-description-list--GridTemplateColumns--width: 250px;
-  /* --pf-c-description-list--GridTemplateColumns--width: minmax(1fr, 250px); */
+@media (min-width: 576px) {
+  #device-activity-sessions dl {
+    --pf-c-description-list--GridTemplateColumns--count: 3;
+  }
+}
+
+@media (min-width: 768px) {
+  #device-activity-sessions dl {
+    --pf-c-description-list--GridTemplateColumns--count: 4;
+  }
+}
+
+@media (min-width: 1200px) {
+  #device-activity-sessions dl {
+    --pf-c-description-list--GridTemplateColumns--count: 5;
+  }
 }
 
 #device-details.pf-c-content {
