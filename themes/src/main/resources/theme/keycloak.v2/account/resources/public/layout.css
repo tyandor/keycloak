@@ -23,3 +23,40 @@
   --pf-c-content--heading--FontFamily: "Red Hat Text", Overpass, overpass, helvetica, arial, sans-serif;
 }
 /* End TODO */
+
+.idp-icon-social {
+  width: 32px;
+  height: 32px;
+}
+
+#github-idp-icon-social {
+  background-image: url(../img/socialmedia/socialmedia_icons_github_transparent.svg);
+}
+
+#linkedin-idp-icon-social {
+  background-image: url(../img/socialmedia/socialmedia_icons_linkedin_transparent.svg);
+}
+
+#facebook-idp-icon-social {
+  background-image: url(../img/socialmedia/socialmedia_icons_facebook_transparent.svg);
+}
+
+#google-idp-icon-social {
+  background-image: url(../img/socialmedia/socialmedia_icons_google_transparent.svg);
+}
+
+#microsoft-idp-icon-social {
+  background-image: url(../img/socialmedia/socialmedia_icons_microsoft_transparent.svg);
+}
+
+#instagram-idp-icon-social {
+  background-image: url(../img/socialmedia/socialmedia_icons_instagram_transparent.svg);
+}
+
+#stackoverflow-idp-icon-social {
+  background-image: url(../img/socialmedia/socialmedia_icons_stack_transparent.svg);
+}
+
+#twitter-idp-icon-social {
+  background-image: url(../img/socialmedia/socialmedia_icons_twitter_transparent.svg);
+}
