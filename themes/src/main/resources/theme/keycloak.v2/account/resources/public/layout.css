@@ -15,17 +15,10 @@
 
 }
 
-
-
-.pf-c-data-list{
-  --pf-c-data-list--BorderTopWidth: 0rem;
-  --pf-c-data-list__item-row--PaddingLeft: 0rem;
+.pf-c-page{
+  --pf-c-page__main-section--BackgroundColor: white;
 }
 
-.pf-c-card{
-  --pf-c-card--child--PaddingLeft: 0rem;
-  --pf-c-card--first-child--PaddingTop: 0rem;
-}
 
 /* TODO: remove pre-release, these are just to get rh font working on localhost */
 :root {
