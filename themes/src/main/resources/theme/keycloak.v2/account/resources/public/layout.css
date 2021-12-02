@@ -25,24 +25,37 @@
 /* End TODO */
 
 /* Device Activity screen */
+.signed-in-device-list .pf-c-data-list__item-row {
+  --pf-c-data-list__item-row--PaddingRight: 0;
+  --pf-c-data-list__item-row--PaddingLeft: 0;
+}
+
+.signed-in-device-list .pf-c-data-list__expandable-content-body {
+  --pf-c-data-list__expandable-content-body--PaddingRight: 0;
+}
+
+.signed-in-device-grid {
+  grid-template-columns: auto repeat(11, [col-start] 1fr);
+}
+
+.signed-in-device-list.pf-c-data-list {
+  --pf-c-data-list--sm--BorderTopWidth: 0;
+}
+
 @media (min-width: 576px) {
-  #device-activity-sessions dl {
-    --pf-c-description-list--GridTemplateColumns--count: 3;
+  .signed-in-device-list .pf-c-description-list {
+    --pf-c-description-list--GridTemplateColumns--count: 2;
   }
 }
 
 @media (min-width: 768px) {
-  #device-activity-sessions dl {
+  .signed-in-device-list .pf-c-description-list {
     --pf-c-description-list--GridTemplateColumns--count: 4;
   }
 }
 
 @media (min-width: 1200px) {
-  #device-activity-sessions dl {
+  .signed-in-device-list .pf-c-description-list {
     --pf-c-description-list--GridTemplateColumns--count: 5;
   }
 }
-
-#device-details.pf-c-content {
-  --pf-c-content--FontSize: var(--pf-global--FontSize--lg);
-} 
