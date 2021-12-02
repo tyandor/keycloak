@@ -299,33 +299,36 @@ class SigningInPage extends React.Component<SigningInPageProps, SigningInPageSta
                     
                     
                     <SplitItem isFilled>
-                        <div id={'mob-setUpAction-' + credContainer.type} class="pf-u-display-none-on-lg pf-u-float-right">
-                            <Dropdown
-                                isPlain
-                                position={DropdownPosition.right}
-                                toggle={<KebabToggle onToggle={isOpen => {
-                                    credContainer.open = isOpen;
-                                    this.setState({ credentialContainers: new Map(this.state.credentialContainers) });
-                                }} />}
-                                isOpen={credContainer.open}
-                                dropdownItems={[
-                                    <button id={`mob-${credContainer.type}-set-up`} className="pf-c-button pf-m-link" type="button" onClick={() => setupAction.execute()}>
-                                        <span className="pf-c-button__icon">
-                                            <i className="fas fa-plus-circle" aria-hidden="true"></i>
-                                        </span>
-                                        <Msg msgKey='setUpNew' params={[credContainerDisplayName]} />
-                                    </button>]}
-                            />
-                        </div>
-                        
-                        <div id={'setUpAction-' + credContainer.type} class="pf-u-display-none pf-u-display-inline-flex-on-lg pf-u-float-right">
-                            <button id={`${credContainer.type}-set-up`} className="pf-c-button pf-m-link" type="button" onClick={()=> setupAction.execute()}>
-                                <span className="pf-c-button__icon">
-                                    <i className="fas fa-plus-circle" aria-hidden="true"></i>
-                                </span>
-                                <Msg msgKey='setUpNew' params={[credContainerDisplayName]}/>
-                            </button>
-                        </div>
+                        {credContainer.createAction && 
+                            <div id={'mob-setUpAction-' + credContainer.type} class="pf-u-display-none-on-lg pf-u-float-right">
+                                <Dropdown
+                                    isPlain
+                                    position={DropdownPosition.right}
+                                    toggle={<KebabToggle onToggle={isOpen => {
+                                        credContainer.open = isOpen;
+                                        this.setState({ credentialContainers: new Map(this.state.credentialContainers) });
+                                    }} />}
+                                    isOpen={credContainer.open}
+                                    dropdownItems={[
+                                        <button id={`mob-${credContainer.type}-set-up`} className="pf-c-button pf-m-link" type="button" onClick={() => setupAction.execute()}>
+                                            <span className="pf-c-button__icon">
+                                                <i className="fas fa-plus-circle" aria-hidden="true"></i>
+                                            </span>
+                                            <Msg msgKey='setUpNew' params={[credContainerDisplayName]} />
+                                        </button>]}
+                                />
+                            </div>
+                        }
+                        {credContainer.createAction && 
+                            <div id={'setUpAction-' + credContainer.type} class="pf-u-display-none pf-u-display-inline-flex-on-lg pf-u-float-right">
+                                <button id={`${credContainer.type}-set-up`} className="pf-c-button pf-m-link" type="button" onClick={()=> setupAction.execute()}>
+                                    <span className="pf-c-button__icon">
+                                        <i className="fas fa-plus-circle" aria-hidden="true"></i>
+                                    </span>
+                                    <Msg msgKey='setUpNew' params={[credContainerDisplayName]}/>
+                                </button>
+                            </div>
+                        }
                     </SplitItem>
                   </Split>
                 
