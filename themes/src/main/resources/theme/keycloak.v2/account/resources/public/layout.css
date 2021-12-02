@@ -28,3 +28,8 @@
   --pf-c-content--heading--FontFamily: "Red Hat Text", Overpass, overpass, helvetica, arial, sans-serif;
 }
 /* End TODO */
+
+/* Account Page screen */
+.personal-info-form .pf-c-form__group-control {
+  max-width: 600px;
+}
