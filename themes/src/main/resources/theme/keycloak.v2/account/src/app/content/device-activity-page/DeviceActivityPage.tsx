@@ -334,6 +334,59 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
                                     </StackItem>
                                   </Stack>
                                 </DataListItemRow>
+
+
+                                {/* New layout - Grid approach */}
+                                <DataListItemRow>
+                                  <Grid hasGutter>
+                                    <GridItem span={1} rowSpan={2}> {/* Device Icon */}
+                                      <DesktopIcon id={this.elementId('icon-desktop', session, 'device')}  />
+                                    </GridItem>
+                                    <GridItem span={10}> {/* device info & label */}
+                                      <span id={this.elementId('browser', session)} className="pf-u-mr-md">{this.findOS(device)} {this.findOSVersion(device)} / {session.browser}</span>
+                                      {session.current &&
+                                        <Label color="green"><Msg msgKey="currentSession" /></Label>}
+                                    </GridItem>
+                                    {!session.current &&
+                                      <GridItem span={1}> {/* Sign Out button */}
+                                        <DataListCell alignRight isFilled={false}>
+                                          <ContinueCancelModal buttonTitle='doSignOut'
+                                            buttonId={this.elementId('sign-out', session)}
+                                            modalTitle='doSignOut'
+                                            buttonVariant='secondary'
+                                            modalMessage='signOutWarning'
+                                            onContinue={() => this.signOutSession(device, session)}
+                                          />
+                                        </DataListCell>
+                                      </GridItem>
+                                    }
+                                    <GridItem span={11}> {/* Device extended details (columns) */}
+                                      <DescriptionList>
+                                        <DescriptionListGroup>
+                                          <DescriptionListTerm>{Msg.localize('ipAddress')}</DescriptionListTerm>
+                                          <DescriptionListDescription>{session.ipAddress}</DescriptionListDescription>
+                                        </DescriptionListGroup>
+                                        <DescriptionListGroup>
+                                          <DescriptionListTerm>{Msg.localize('lastAccessedOn')}</DescriptionListTerm>
+                                          <DescriptionListDescription>{this.time(session.lastAccess)}</DescriptionListDescription>
+                                        </DescriptionListGroup>
+                                        <DescriptionListGroup>
+                                          <DescriptionListTerm>{Msg.localize('clients')}</DescriptionListTerm>
+                                          <DescriptionListDescription>{this.makeClientsString(session.clients)}</DescriptionListDescription>
+                                        </DescriptionListGroup>
+                                        <DescriptionListGroup>
+                                          <DescriptionListTerm>{Msg.localize('started')}</DescriptionListTerm>
+                                          <DescriptionListDescription>{this.time(session.started)}</DescriptionListDescription>
+                                        </DescriptionListGroup>
+                                        <DescriptionListGroup>
+                                          <DescriptionListTerm>{Msg.localize('expires')}</DescriptionListTerm>
+                                          <DescriptionListDescription>{this.time(session.expires)}</DescriptionListDescription>
+                                        </DescriptionListGroup>
+                                      </DescriptionList>
+                                    </GridItem>
+                                  </Grid>
+                                </DataListItemRow>
+
                               </React.Fragment>
                             );
                           })}
@@ -342,6 +395,111 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
                     })}
                   </DataListItem>
               </DataList>
+            </PageSection>
+
+
+            <PageSection isFilled variant={PageSectionVariants.light}>
+              <Stack hasGutter>
+                <StackItem> {/* Signed in device section title */}
+                  <DataList aria-label={Msg.localize('signedInDevices')}>
+                    <DataListItem key="SignedInDevicesHeader" aria-labelledby="signedInDevicesTitle" isExpanded={false}>
+                      <DataListItemRow>
+                        <DataListItemCells
+                          dataListCells={[
+                            <DataListCell key='signedInDevicesTitle' width={4}>
+                              <div id="signedInDevicesTitle" className="pf-c-content">
+                                  <h2><Msg msgKey="signedInDevices"/></h2>
+                              </div>
+                            </DataListCell>,
+                            <DataListCell alignRight isFilled={false}>
+                              <Tooltip content={<Msg msgKey="refreshPage" />}>
+                                <Button
+                                  aria-describedby="refresh page"
+                                  id="refresh-page"
+                                  variant="link"
+                                  onClick={this.fetchDevices.bind(this)}
+                                  icon={<SyncAltIcon />}
+                                >
+                                  Refresh
+                                </Button>
+                              </Tooltip>
+                            </DataListCell>,
+                            <KeycloakContext.Consumer>
+                            { (keycloak: KeycloakService) => (
+                              <DataListCell key='signOutAllButton' width={1} alignRight isFilled={false}>
+                                {this.isShowSignOutAll(this.state.devices) &&
+                                  <ContinueCancelModal buttonTitle='signOutAllDevices'
+                                                buttonId='sign-out-all'
+                                                modalTitle='signOutAllDevices'
+                                                modalMessage='signOutAllDevicesWarning'
+                                                onContinue={() => this.signOutAll(keycloak)}
+                                  />
+                                }
+                              </DataListCell>
+                            )}
+                            </KeycloakContext.Consumer>
+                          ]}
+                        />
+                      </DataListItemRow>
+                    </DataListItem>
+                  </DataList>
+                </StackItem>
+                <StackItem>
+                  <DataList aria-label={"device details PLACEHOLDER label"}>
+                    <DataListItem>
+                      {this.state.devices.map((device: Device, deviceIndex: number) => {
+                        return (
+                          <React.Fragment>
+                            {device.sessions.map((session: Session, sessionIndex: number) => {
+                              return (
+                              <React.Fragment key={'device-' + deviceIndex + '-session-' + sessionIndex}>
+                                <DataListItemRow>
+                                  <Grid hasGutter>
+                                    <GridItem span={1} rowSpan={2}>
+                                      <div className="pf-c-content pf-u-mt-lg">
+                                        <span className="pf-u-mr-sm">{this.findDeviceTypeIcon(session, device)}</span>
+                                      </div>
+                                    </GridItem>
+                                    <GridItem span={10}>
+                                      <div id="device-details" className="pf-c-content">
+                                        <span id={this.elementId('browser', session)} className="pf-u-mr-md">{this.findOS(device)} {this.findOSVersion(device)} / {session.browser}</span>
+                                        {session.current &&
+                                          <Label color="green"><Msg msgKey="currentSession" /></Label>}
+                                      </div>
+                                    </GridItem>
+                                    <GridItem span={1}>
+                                      {/* {!session.current && */}
+                                        <ContinueCancelModal buttonTitle='doSignOut'
+                                          buttonId={this.elementId('sign-out', session)}
+                                          modalTitle='doSignOut'
+                                          buttonVariant='secondary'
+                                          modalMessage='signOutWarning'
+                                          onContinue={() => this.signOutSession(device, session)}
+                                        />
+                                      {/* } */}
+                                    </GridItem>
+                                    <GridItem>
+                                      <div id="device-details" className="pf-c-content">
+                                        <span id={this.elementId('browser', session)} className="pf-u-mr-md">TEST 1 - {this.findOS(device)} {this.findOSVersion(device)} / {session.browser}</span>
+                                      </div>
+                                    </GridItem>
+                                    <GridItem>
+                                      <div id="device-details" className="pf-c-content">
+                                        <span id={this.elementId('browser', session)} className="pf-u-mr-md">TEST 2 - {this.findOS(device)} {this.findOSVersion(device)} / {session.browser}</span>
+                                      </div>
+                                    </GridItem>
+                                  </Grid>
+                                </DataListItemRow>
+                              </React.Fragment>
+                              )
+                            })}
+                          </React.Fragment>
+                        )
+                      })}
+                    </DataListItem>
+                  </DataList>
+                </StackItem>
+              </Stack>
             </PageSection>
           </ContentPage>
         );
