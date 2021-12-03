@@ -129,7 +129,7 @@ class LinkedAccountsPage extends React.Component<LinkedAccountsPageProps, Linked
                             <Title headingLevel="h2" className="pf-u-mb-lg" size='xl'>
                                 <Msg msgKey='linkedLoginProviders'/>
                             </Title>
-                            <DataList id="linked-idps" aria-label='foo'>
+                            <DataList id="linked-idps" aria-label='linked-idps'>
                                 {this.makeRows(this.state.linkedAccounts, true)}
                             </DataList>
                         </StackItem>
@@ -137,7 +137,7 @@ class LinkedAccountsPage extends React.Component<LinkedAccountsPageProps, Linked
                             <Title headingLevel="h2" className="pf-u-mt-xl pf-u-mb-lg" size='xl'>
                                 <Msg msgKey='unlinkedLoginProviders'/>
                             </Title>
-                            <DataList id="unlinked-idps" aria-label='foo'>
+                            <DataList id="unlinked-idps" aria-label='unlinked-idps'>
                                 {this.makeRows(this.state.unLinkedAccounts, false)}
                             </DataList>
                         </StackItem>
@@ -196,7 +196,7 @@ class LinkedAccountsPage extends React.Component<LinkedAccountsPageProps, Linked
                                         </Split>
                                     </DataListCell>,
                                 ]}/>
-                            <DataListAction aria-labelledby='foo' aria-label='foo action' id='setPasswordAction'>
+                            <DataListAction aria-labelledby='account-link-buttons' aria-label='account-link-buttons action' id='setPasswordAction'>
                                 {isLinked && <Button id={`${account.providerAlias}-idp-unlink`} variant='link' onClick={() => this.unLinkAccount(account)}><UnlinkIcon size='sm'/> <Msg msgKey='unLink'/></Button>}
                                 {!isLinked && <Button id={`${account.providerAlias}-idp-link`} variant='link' onClick={() => this.linkAccount(account)}><LinkIcon size='sm'/> <Msg msgKey='link'/></Button>}
                             </DataListAction>
