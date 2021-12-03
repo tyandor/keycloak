@@ -60,3 +60,7 @@
 #twitter-idp-icon-social {
   background-image: url(../img/socialmedia/socialmedia_icons_twitter_transparent.svg);
 }
+
+#openshift-idp-icon-social {
+  background-image: url(../img/socialmedia/socialmedia_icons_openshift_transparent.svg);
+}

@@ -220,7 +220,7 @@ class LinkedAccountsPage extends React.Component<LinkedAccountsPageProps, Linked
     private findIcon(account: LinkedAccount): React.ReactNode {
         const socialIconId = `${account.providerAlias}-idp-icon-social`;
         if (account.providerName.toLowerCase().includes('bitbucket')) return (<BitbucketIcon id={socialIconId} size='lg'/>);
-        if (account.providerName.toLowerCase().includes('openshift')) return (<OpenshiftIcon id={socialIconId} size='lg'/>);
+        if (account.providerName.toLowerCase().includes('openshift')) return (<div className="idp-icon-social" id="openshift-idp-icon-social" />);
         if (account.providerName.toLowerCase().includes('gitlab')) return (<GitlabIcon id={socialIconId} size='lg'/>);
         if (account.providerName.toLowerCase().includes('paypal')) return (<PaypalIcon id={socialIconId} size='lg'/>);
         if (account.providerName) return (<div className="idp-icon-social" id={socialIconId}/>)
