@@ -221,7 +221,7 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
             introMessage="signedInDevicesExplanation" 
           >
             <PageSection isFilled variant={PageSectionVariants.light}>
-            <Split hasGutter className="pf-u-mb-lg">
+            <Split hasGutter className="pf-u-mb-lg device-activity-section-header">
               <SplitItem isFilled>
                 <div id="signedInDevicesTitle" className="pf-c-content"><Title headingLevel="h2" size="xl"><Msg msgKey="signedInDevices"/></Title></div>
               </SplitItem>
@@ -266,12 +266,12 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
                                   <GridItem className="device-icon" span={1} rowSpan={2}>
                                     <span>{this.findDeviceTypeIcon(session, device)}</span>
                                   </GridItem>
-                                  <GridItem span={10}>
+                                  <GridItem sm={8} md={9} span={10}> {/* md={9} lg={10} */}
                                     <span id={this.elementId('browser', session)} className="pf-u-mr-md">{this.findOS(device)} {this.findOSVersion(device)} / {session.browser}</span>
                                     {session.current &&
                                       <Label color="green"><Msg msgKey="currentSession" /></Label>}
                                   </GridItem>
-                                  <GridItem className="pf-u-text-align-right" span={1}>
+                                  <GridItem className="pf-u-text-align-right" sm={3} md={2} span={1}> {/* sm={10} */}
                                     {!session.current &&
                                       <ContinueCancelModal buttonTitle='doSignOut'
                                         buttonId={this.elementId('sign-out', session)}
@@ -283,7 +283,7 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
                                     }
                                   </GridItem>
                                   <GridItem span={11}>
-                                    <DescriptionList>
+                                    <DescriptionList columnModifier={{ sm: '2Col', lg: '3Col' }}>
                                       <DescriptionListGroup>
                                         <DescriptionListTerm>{Msg.localize('ipAddress')}</DescriptionListTerm>
                                         <DescriptionListDescription>{session.ipAddress}</DescriptionListDescription>

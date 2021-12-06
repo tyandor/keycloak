@@ -42,19 +42,18 @@
   --pf-c-data-list--sm--BorderTopWidth: 0;
 }
 
-@media (min-width: 576px) {
-  .signed-in-device-list .pf-c-description-list {
-    --pf-c-description-list--GridTemplateColumns--count: 2;
+@media (max-width: 576px) {
+  .pf-c-data-list__item {
+    --pf-c-data-list__item--BorderBottomWidth: 1px;
+    --pf-c-data-list__item--BorderBottomColor: var(--pf-global--BorderColor--100);
+  }
+
+  .signed-in-device-list.pf-c-data-list {
+    --pf-c-data-list--BorderTopWidth: 0;
   }
 }
 
 @media (min-width: 768px) {
-  .signed-in-device-list .pf-c-description-list {
-    --pf-c-description-list--GridTemplateColumns--count: 4;
-  }
-}
-
-@media (min-width: 1200px) {
   .signed-in-device-list .pf-c-description-list {
     --pf-c-description-list--GridTemplateColumns--count: 5;
   }
