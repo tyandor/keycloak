@@ -293,8 +293,7 @@ div.kc-logo-text span {
 /* TOTP */
 
 .subtitle {
-    text-align: right;
-    margin-top: 30px;
+    text-align: left;
     color: #909090;
 }
 

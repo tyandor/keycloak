@@ -94,13 +94,10 @@
                             <#if displayRequiredFields>
                                 <div class="${properties.kcContentWrapperClass!}">
                                     <h1 id="kc-page-title" class="pf-c-title pf-m-3xl"><#nested "header"></h1>
-                                    <div class="${properties.kcLabelWrapperClass!} subtitle">
-                                        <span class="subtitle"><span class="required">*</span> ${msg("requiredFields")}</span>
-                                    </div>
+                                    <div class="${properties.kcLabelWrapperClass!} ${properties.kcMediumMarginTop!} subtitle">${msg("allFieldsRequired")}</div>
                                 </div>
                             <#else>
                                 <h1 id="kc-page-title" class="pf-c-title pf-m-3xl"><#nested "header"></h1>
-                                <#nested "requiredFields">
                             </#if>
                         <#else>
                             <#if displayRequiredFields>
