@@ -235,7 +235,7 @@ export class DeviceActivityPage extends React.Component<DeviceActivityPageProps,
             <PageSection isFilled variant={PageSectionVariants.light}>
             <DataList aria-label={Msg.localize('signedInDevices')}>
                   <DataListItem key="SignedInDevicesHeader" aria-labelledby="signedInDevicesTitle" isExpanded={false}>
-                      <DataListItemRow>
+                      <DataListItemRow className="pf-u-pl-0">
                           <DataListItemCells
                               dataListCells={[
                                 <DataListCell key='signedInDevicesTitle' width={4}>
