@@ -42,7 +42,7 @@ export class ContentPage extends React.Component<ContentPageProps> {
             <React.Fragment>
             <ContentAlert />
 
-            <PageSection variant={PageSectionVariants.light}>
+            <PageSection variant={PageSectionVariants.light} className="pf-u-pb-xs">
               <Split>
                 <SplitItem isFilled>
                   <TextContent>
@@ -50,7 +50,7 @@ export class ContentPage extends React.Component<ContentPageProps> {
                       <Msg msgKey={this.props.title} />
                     </Title>
                     {this.props.introMessage && (
-                      <Text component="p" className="pf-u-mb-xl">
+                      <Text component="p">
                         <Msg msgKey={this.props.introMessage} />
                       </Text>
                     )}

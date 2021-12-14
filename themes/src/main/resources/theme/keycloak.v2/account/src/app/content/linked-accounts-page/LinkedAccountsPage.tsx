@@ -24,6 +24,7 @@ import {
     DataListItemCells,
     DataListCell,
     DataListItemRow,
+    Divider,
     Label,
     PageSection,
     PageSectionVariants,
