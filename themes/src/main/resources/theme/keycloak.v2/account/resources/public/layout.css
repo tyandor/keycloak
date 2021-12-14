@@ -42,10 +42,22 @@
   --pf-c-data-list--sm--BorderTopWidth: 0;
 }
 
-@media (max-width: 576px) {
+.pf-c-data-list__item {
+  --pf-c-data-list__item--BorderBottomWidth: 1px;
+  --pf-c-data-list__item--BorderBottomColor: var(--pf-global--BorderColor--100);
+}
+
+.signed-in-device-list.pf-c-data-list {
+  --pf-c-data-list--BorderTopWidth: 0;
+}
+
+@media (min-width: 576px) {
   .pf-c-data-list__item {
-    --pf-c-data-list__item--BorderBottomWidth: 1px;
-    --pf-c-data-list__item--BorderBottomColor: var(--pf-global--BorderColor--100);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--pf-c-data-list__item--BackgroundColor);
+    border-bottom: var(--pf-c-data-list__item--BorderBottomWidth) solid var(--pf-c-data-list__item--BorderBottomColor);
   }
 
   .signed-in-device-list.pf-c-data-list {
