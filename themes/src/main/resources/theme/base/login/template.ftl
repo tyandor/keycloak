@@ -39,13 +39,13 @@
     <body class="${properties.kcBodyClass!}">
         <div class="${properties.kcLoginClass!}">
             <div class="pf-c-login__container">
-                <header id="kc-header" class="${properties.kcHeaderClass!} ${properties.kcAlignTextCenter!} ${properties.kc4xlBottomPadding!}">
+                <header id="kc-header" class="${properties.kcHeaderClass!} ${properties.kcAlignTextCenter!} ${properties.kc3xlBottomPadding!}">
                     <h1>
                         ${kcSanitize(msg("loginTitleHtml",(realm.displayNameHtml!'')))?no_esc}
                     </h1>
                 </header>
                 <main class="pf-c-login__main">
-                    <header class="pf-c-login__main-header">
+                    <header class="${properties.kcLoginMainHeaderClass!}">
                         <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
                             <script type="text/javascript">
                                 const toggleIntlMenu = () => {
@@ -94,9 +94,7 @@
                             <#if displayRequiredFields>
                                 <div class="${properties.kcContentWrapperClass!}">
                                     <h1 id="kc-page-title" class="pf-c-title pf-m-3xl"><#nested "header"></h1>
-                                    <div class="${properties.kcLabelWrapperClass!} subtitle">
-                                        <span class="subtitle"><span class="required">*</span> ${msg("requiredFields")}</span>
-                                    </div>
+                                    <div class="${properties.kcLabelWrapperClass!} ${properties.kcMediumMarginTop!} subtitle">${msg("allFieldsRequired")}</div>
                                 </div>
                             <#else>
                                 <h1 id="kc-page-title" class="pf-c-title pf-m-3xl"><#nested "header"></h1>
