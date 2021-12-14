@@ -15,6 +15,11 @@
 
 }
 
+.pf-c-page{
+  --pf-c-page__main-section--BackgroundColor: white;
+}
+
+
 /* TODO: remove pre-release, these are just to get rh font working on localhost */
 :root {
   --pf-global--FontFamily--sans-serif:  "Red Hat Text", Overpass, overpass, helvetica, arial, sans-serif;
@@ -23,6 +28,11 @@
   --pf-c-content--heading--FontFamily: "Red Hat Text", Overpass, overpass, helvetica, arial, sans-serif;
 }
 /* End TODO */
+
+/* Account Page screen */
+.personal-info-form .pf-c-form__group-control {
+  max-width: 600px;
+}
 
 /* Device Activity screen */
 .signed-in-device-list .pf-c-data-list__item-row {
