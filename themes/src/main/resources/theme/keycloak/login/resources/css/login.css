@@ -362,7 +362,7 @@ ul#kc-totp-supported-apps {
 }
 
 .kc-social-provider-logo {
-    font-size: 23px;
+    font-size: var(--pf-global--icon--FontSize--lg);
     width: 30px;
     height: 25px;
     float: left;
