@@ -16,7 +16,7 @@
                 <p><a href="${pageRedirectUri}">${kcSanitize(msg("backToApplication"))?no_esc}</a></p>
             <#elseif actionUri?has_content>
                 <input type="button" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!}" onclick="location.href='${actionUri}'" value="${kcSanitize(msg("proceedWithAction"))}">
-                <a class="pf-c-button pf-m-link" href="#">${kcSanitize(msg("learnMoreDeviceAuth"))?no_esc} <i class="fas fa-external-link-alt"></i></a>
+                <a class="${properties.kcLinkButton!}" href="#">${kcSanitize(msg("learnMoreDeviceAuth"))?no_esc} <i class="fas fa-external-link-alt"></i></a>
             <#elseif (client.baseUrl)?has_content>
                 <p><a href="${client.baseUrl}">${kcSanitize(msg("backToApplication"))?no_esc}</a></p>
             </#if>

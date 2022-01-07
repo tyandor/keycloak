@@ -11,7 +11,7 @@
     <#elseif section = "form">
     
         <form id="kc-user-verify-device-user-code-form" class="${properties.kcFormClass!}" action="${url.oauth2DeviceVerificationAction}" method="post">
-            <div class="${properties.kcFormGroupClass!} pf-u-mt-lg">
+            <div class="${properties.kcFormGroupClass!} ${properties.kcLargeMarginTop}">
                 <div class="${properties.kcInputWrapperClass!}">
                     <label class=${properties.kcFormLabelClass}>
                         <span>${msg("oauth2DeviceCodeLabel")}</span>
