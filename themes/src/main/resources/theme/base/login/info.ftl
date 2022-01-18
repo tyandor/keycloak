@@ -9,7 +9,7 @@
     <#elseif section = "subHeader">
         <p class="instruction">${message.summary}<#if requiredActions??><#list requiredActions>: <b><#items as reqActionItem>${msg("requiredAction.${reqActionItem}")}<#sep>, </#items></b></#list><#else></#if></p>
     <#elseif section = "form">
-    <div id="kc-info-message" class="${properties.kcLargeMarginTop}">
+    <div id="kc-info-message">
         <#if skipLink??>
         <#else>
             <#if pageRedirectUri?has_content>

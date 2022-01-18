@@ -136,7 +136,7 @@
                             </#if>
                         </#if>
                     </header>
-                    <div class="pf-c-login__main-body">
+                    <div class="${properties.kcMainBody}">
                         <#-- App-initiated actions should not see warning messages about the need to complete the action -->
                         <#-- during login.                                                                               -->
                         <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
