@@ -9,7 +9,7 @@
     <#elseif section = "subHeader">
       ${msg("oauthGrantRequest")}
     <#elseif section = "form">
-        <div id="kc-oauth" class="${properties.kcLargeMarginTop} content-area">
+        <div id="kc-oauth" class="${properties.kcLargeMarginTop} ${properties.kcMdBottomMargin} content-area">
             <ul class="${properties.kcUnorderedList}">
                 <#if oauth.clientScopesRequested??>
                     <#list oauth.clientScopesRequested as clientScope>
@@ -20,7 +20,7 @@
                 </#if>
             </ul>
 
-            <form class="form-actions" action="${url.oauthAction}" method="POST">
+            <form class="form-actions ${properties.kcXlTopMargin}" action="${url.oauthAction}" method="POST">
                 <input type="hidden" name="code" value="${oauth.code}">
                 <div class="${properties.kcFormGroupClass!}">
                     <div id="kc-form-options">

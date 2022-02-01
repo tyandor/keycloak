@@ -10,11 +10,11 @@
         ${msg("oauth2DeviceInvalidUserCodeTitle")}
     <#elseif section = "form">
     
-        <form id="kc-user-verify-device-user-code-form" class="${properties.kcFormClass!}" action="${url.oauth2DeviceVerificationAction}" method="post">
+        <form id="kc-user-verify-device-user-code-form" class="${properties.kcFormClass!} ${properties.kcMdTopPadding} ${properties.kcMdBottomMargin}" action="${url.oauth2DeviceVerificationAction}" method="post">
             <div class="${properties.kcFormGroupClass!} ${properties.kcLargeMarginTop}">
                 <div class="${properties.kcInputWrapperClass!}">
                     <label class=${properties.kcFormLabelClass}>
-                        <span>${msg("oauth2DeviceCodeLabel")}</span>
+                        <span class="${properties.kcLabelClass}">${msg("oauth2DeviceCodeLabel")}</span>
                     </label>
                     <input id="device-user-code" name="device_user_code" autocomplete="off" type="text" class="${properties.kcInputClass!}" autofocus />
                 </div>

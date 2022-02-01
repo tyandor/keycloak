@@ -15,8 +15,16 @@
             <#if pageRedirectUri?has_content>
                 <p><a href="${pageRedirectUri}">${kcSanitize(msg("backToApplication"))?no_esc}</a></p>
             <#elseif actionUri?has_content>
-                <input type="button" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!}" onclick="location.href='${actionUri}'" value="${kcSanitize(msg("proceedWithAction"))}">
-                <a class="${properties.kcLinkButton!}" href="#">${kcSanitize(msg("learnMoreDeviceAuth"))?no_esc} <i class="fas fa-external-link-alt"></i></a>
+                <div class="${properties.kcXlTopMargin} ${properties.kcMdBottomMargin}">
+                    <input type="button" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!}" onclick="location.href='${actionUri}'" value="${kcSanitize(msg("proceedWithAction"))}">
+                    <!-- link button -->
+                    <button class="${properties.kcLinkButton} ${properties.kcSmLeftMargin}" type="button" onclick="location.href='#'">
+                      ${kcSanitize(msg("learnMoreDeviceAuth"))?no_esc}
+                      <span class="${properties.kcButtonIcon}">
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                </div>
             <#elseif (client.baseUrl)?has_content>
                 <p><a href="${client.baseUrl}">${kcSanitize(msg("backToApplication"))?no_esc}</a></p>
             </#if>
