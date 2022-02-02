@@ -39,13 +39,13 @@
     <body class="${properties.kcBodyClass!}">
         <div class="${properties.kcLoginClass!}">
             <div class="pf-c-login__container">
-                <header id="kc-header" class="${properties.kcHeaderClass!} ${properties.kcAlignTextCenter!} ${properties.kc4xlBottomPadding!}">
+                <header id="kc-header" class="${properties.kcHeaderClass!} ${properties.kcAlignTextCenter!} ${properties.kc3xlBottomPadding!}">
                     <h1>
                         ${kcSanitize(msg("loginTitleHtml",(realm.displayNameHtml!'')))?no_esc}
                     </h1>
                 </header>
                 <main class="pf-c-login__main">
-                    <header class="pf-c-login__main-header">
+                    <header class="${properties.kcLoginMainHeaderClass!}">
                         <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
                             <script type="text/javascript">
                                 const toggleIntlMenu = () => {
