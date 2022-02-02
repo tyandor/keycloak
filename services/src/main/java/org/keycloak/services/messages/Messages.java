@@ -22,7 +22,10 @@ package org.keycloak.services.messages;
 public class Messages {
 
     public static final String DISPLAY_UNSUPPORTED = "displayUnsupported";
+    
     public static final String LOGIN_TIMEOUT = "loginTimeout";
+    
+    public static final String LOGIN_TIMEOUT_HEADER = "loginTimeoutHeader";
 
     public static final String INVALID_USER = "invalidUserMessage";
 
