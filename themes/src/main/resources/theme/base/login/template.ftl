@@ -92,7 +92,7 @@
                         </#if>
                         <#if !(auth?has_content && auth.showUsername() && !auth.showResetCredentials())>
                             <#if displayRequiredFields>
-                                <div class="${properties.kcContentWrapperClass!}">
+                                <div class="${properties.kcXLBottomPadding!}">
                                     <h1 id="kc-page-title" class="pf-c-title pf-m-3xl"><#nested "header"></h1>
                                     <span class="${properties.kcSubHeaderClass}"><#nested "subHeader"></span>
                                     <div class="${properties.kcLabelWrapperClass!} subtitle">
