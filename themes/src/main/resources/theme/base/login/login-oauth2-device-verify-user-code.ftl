@@ -16,7 +16,7 @@
                     <label class=${properties.kcFormLabelClass}>
                         <span class="${properties.kcLabelClass}">${msg("oauth2DeviceCodeLabel")}</span>
                     </label>
-                    <input id="device-user-code" name="device_user_code" autocomplete="off" type="text" class="${properties.kcInputClass!}" autofocus />
+                    <input id="device-user-code" placeholder="XXXX-XXXX" name="device_user_code" autocomplete="off" type="text" class="${properties.kcInputClass!}" autofocus />
                 </div>
             </div>
 

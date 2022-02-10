@@ -123,6 +123,8 @@ public interface LoginFormsProvider extends Provider {
 
     LoginFormsProvider addError(FormMessage errorMessage);
 
+    LoginFormsProvider addWarning(FormMessage warningMessage);
+
     /**
      * Add a success message to the form
      *

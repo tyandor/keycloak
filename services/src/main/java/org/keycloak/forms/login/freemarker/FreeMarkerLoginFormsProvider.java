@@ -711,6 +711,21 @@ public class FreeMarkerLoginFormsProvider implements LoginFormsProvider {
     }
 
     @Override
+    public LoginFormsProvider addWarning(FormMessage warningMessage) {
+        if (this.messageType != MessageType.WARNING) {
+            this.messageType = null;
+            this.messages = null;
+        }
+        if (messages == null) {
+            this.messageType = MessageType.WARNING;
+            this.messages = new LinkedList<>();
+        }
+        this.messages.add(warningMessage);
+        return this;
+
+    }
+
+    @Override
     public LoginFormsProvider addSuccess(FormMessage errorMessage) {
         if (this.messageType != MessageType.SUCCESS) {
             this.messageType = null;
