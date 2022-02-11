@@ -48,6 +48,7 @@ textarea.pf-c-form-control {
     padding: var(--pf-c-alert--m-inline__icon--PaddingTop) var(--pf-c-alert--m-inline__icon--PaddingRight) var(--pf-c-alert--m-inline__icon--PaddingBottom) var(--pf-c-alert--m-inline__icon--PaddingLeft);
     font-size: 16px;
     font-size: var(--pf-c-alert--m-inline__icon--FontSize);
+    --pf-c-alert__icon--MarginTop: .15rem;
 }
 
 .pf-c-alert.pf-m-success .pf-c-alert__icon {
