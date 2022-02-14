@@ -642,6 +642,10 @@ ul#kc-totp-supported-apps {
     margin-top: 5px;
 }
 
+.pf-c-login__main-body{
+  --pf-c-login__main-body--PaddingBottom: 3rem;
+}
+
 .pf-c-login__container {
     grid-template-areas:
       "header"

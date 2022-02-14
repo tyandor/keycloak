@@ -4,7 +4,7 @@
         ${msg("loginAccountTitle")}
     <#elseif section = "form">
     <div id="kc-form">
-      <div id="kc-form-wrapper">
+      <div id="kc-form-wrapper" class="${properties.kcLargeMarginTop!}">
         <#if realm.password>
             <form id="kc-form-login" class="${properties.kcLoginFormClass!}" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
                 <div class="${properties.kcFormGroupClass!}">
