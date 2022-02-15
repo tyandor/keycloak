@@ -10,8 +10,8 @@
 
             <div class="${properties.kcFormGroupClass!}">
                 <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="password-new" class="${properties.kcLabelClass!}">
-                        <span class="pf-c-form__label-text">${msg("passwordNew")}</span>
+                    <label for="password-new" class="${properties.kcFormLabelClass!}">
+                        <span class="${properties.kcLabelTextClass!}">${msg("passwordNew")}</span>
                     </label>
                 </div>
                 <div class="${properties.kcInputWrapperClass!}">
@@ -30,8 +30,8 @@
 
             <div class="${properties.kcFormGroupClass!}">
                 <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="password-confirm" class="${properties.kcLabelClass!}">
-                        <span class="pf-c-form__label-text">${msg("passwordConfirm")}</span>
+                    <label for="password-confirm" class="${properties.kcFormLabelClass!}">
+                        <span class="${properties.kcLabelTextClass!}">${msg("passwordConfirm")}</span>
                     </label>
                 </div>
                 <div class="${properties.kcInputWrapperClass!}">
@@ -63,7 +63,7 @@
                     <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" type="submit" value="${msg("doSubmit")}" />
                     <button class="${properties.kcButtonClass!} pf-m-link" type="submit" name="cancel-aia" value="true" />${msg("doCancel")}</button>
                 <#else>
-                    <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!} ${properties.kcButtonBlockClass!}" type="submit" value="${msg("doSubmit")}" />
+                    <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!} ${properties.kcSmallMarginTop!}" type="submit" value="${msg("doSubmit")}" />
                 </#if>
             </div>
         </form>

@@ -167,7 +167,7 @@ public class RequiredActionsTest extends AbstractLoginTest {
 
         updatePasswordPage.localeDropdown().selectAndAssert(CUSTOM_LOCALE_NAME);
         assertTrue(updatePasswordPage.feedbackMessage().isWarning());
-        assertEquals("You need to change your password to activate your account.", updatePasswordPage.feedbackMessage().getText());
+        assertEquals("Change your password to activate your account.", updatePasswordPage.feedbackMessage().getText());
         assertEquals("New Password", updatePasswordPage.fields().getNewPasswordLabel());
         assertEquals("Confirm password", updatePasswordPage.fields().getConfirmPasswordLabel());
 
