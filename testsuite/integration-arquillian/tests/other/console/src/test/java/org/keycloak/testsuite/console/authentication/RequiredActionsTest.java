@@ -135,7 +135,7 @@ public class RequiredActionsTest extends AbstractConsoleTest {
 
         registerTestUser();
 
-        Assert.assertTrue(UIUtils.getTextFromElement(driver.findElement(By.id("kc-page-title"))).equals("Mobile Authenticator Setup"));
+        Assert.assertTrue(UIUtils.getTextFromElement(driver.findElement(By.id("kc-page-title"))).equals("Mobile authenticator setup"));
     }
 
     private void allowTestRealmUserRegistration() {
