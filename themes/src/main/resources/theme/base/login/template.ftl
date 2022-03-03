@@ -136,7 +136,7 @@
                         <#-- App-initiated actions should not see warning messages about the need to complete the action -->
                         <#-- during login.                                                                               -->
                         <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
-                            <div class="alert-${message.type} ${properties.kcAlertClass!} pf-m-<#if message.type = 'error'>danger<#else>${message.type}</#if>">
+                            <div class="alert-${message.type} ${properties.kcAlertClass!} pf-m-<#if message.type = 'error'>danger<#else>${message.type} ${properties.kcLargeMarginBottom!}</#if>">
                                 <div class="pf-c-alert__icon">
                                     <#if message.type = 'success'><i class="${properties.kcFeedbackSuccessIcon!}" aria-hidden="true"></i></#if>
                                     <#if message.type = 'warning'><i class="${properties.kcFeedbackWarningIcon!}" aria-hidden="true"></i></#if>
