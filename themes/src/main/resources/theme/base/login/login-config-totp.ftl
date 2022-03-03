@@ -89,17 +89,19 @@
             </div>
 
             <#if isAppInitiatedAction??>
-                <input type="submit"
-                       class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}"
-                       id="saveTOTPBtn" value="${msg("doSubmit")}"
-                />
-                <button type="submit"
-                        class="${properties.kcButtonClass!} ${properties.kcButtonLargeClass!}"
-                        id="cancelTOTPBtn" name="cancel-aia" value="true" />${msg("doCancel")}
-                </button>
+                <div class="${properties.kcFormGroupClass!}">
+                    <input type="submit"
+                        class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcMediumMarginRight!}"
+                        id="saveTOTPBtn" value="${msg("doSubmit")}"
+                    />
+                    <button type="submit"
+                            class="${properties.kcButtonClass!} ${properties.kcButtonLinkClass!}"
+                            id="cancelTOTPBtn" name="cancel-aia" value="true" />${msg("doCancel")}
+                    </button>
+                </div>
             <#else>
                 <input type="submit"
-                       class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}"
+                       class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!}"
                        id="saveTOTPBtn" value="${msg("doSubmit")}"
                 />
             </#if>
