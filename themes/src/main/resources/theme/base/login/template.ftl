@@ -132,18 +132,18 @@
                             </#if>
                         </#if>
                     </header>
-                    <div class="pf-c-login__main-body">
+                    <div class="${properties.kcLoginMainBodyClass!}">
                         <#-- App-initiated actions should not see warning messages about the need to complete the action -->
                         <#-- during login.                                                                               -->
                         <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
                             <div class="alert-${message.type} ${properties.kcAlertClass!} pf-m-<#if message.type = 'error'>danger<#else>${message.type}</#if>">
                                 <div class="pf-c-alert__icon">
-                                    <#if message.type = 'success'><span class="${properties.kcFeedbackSuccessIcon!}"></span></#if>
-                                    <#if message.type = 'warning'><span class="${properties.kcFeedbackWarningIcon!}"></span></#if>
-                                    <#if message.type = 'error'><span class="${properties.kcFeedbackErrorIcon!}"></span></#if>
-                                    <#if message.type = 'info'><span class="${properties.kcFeedbackInfoIcon!}"></span></#if>
+                                    <#if message.type = 'success'><i class="${properties.kcFeedbackSuccessIcon!}" aria-hidden="true"></i></#if>
+                                    <#if message.type = 'warning'><i class="${properties.kcFeedbackWarningIcon!}" aria-hidden="true"></i></#if>
+                                    <#if message.type = 'error'><i class="${properties.kcFeedbackErrorIcon!}" aria-hidden="true"></i></#if>
+                                    <#if message.type = 'info'><i class="${properties.kcFeedbackInfoIcon!}" aria-hidden="true"></i></#if>
                                 </div>
-                                    <span class="${properties.kcAlertTitleClass!}">${kcSanitize(message.summary)?no_esc}</span>
+                                <p class="${properties.kcAlertTitleClass!}">${kcSanitize(message.summary)?no_esc}</p>
                             </div>
                         </#if>
 
