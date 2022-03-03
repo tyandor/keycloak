@@ -247,10 +247,6 @@ div.kc-logo-text span {
     padding-right: 10px;
 }
 
-#kc-username {
-    text-align: center;
-}
-
 #kc-webauthn-settings-form {
     padding-top: 8px;
 }
@@ -298,8 +294,8 @@ div.kc-logo-text span {
 }
 
 .required {
-    color: #A30000; /* default - IE compatibility */
-    color: var(--pf-global--danger-color--200);
+    color: #C9190B; /* default - IE compatibility */
+    color: var(--pf-global--danger-color--100);
 }
 
 ol#kc-totp-settings {

@@ -121,13 +121,8 @@
                             <#else>
                                 <#nested "show-username">
                                 <div id="kc-username" class="${properties.kcFormGroupClass!}">
+                                    <#nested "loginTotpCodeInputTitle">
                                     <label id="kc-attempted-username">${auth.attemptedUsername}</label>
-                                    <a id="reset-login" href="${url.loginRestartFlowUrl}">
-                                        <div class="kc-login-tooltip">
-                                            <i class="${properties.kcResetFlowIcon!}"></i>
-                                            <span class="kc-tooltip-text">${msg("restartLoginTooltip")}</span>
-                                        </div>
-                                    </a>
                                 </div>
                             </#if>
                         </#if>
@@ -150,7 +145,7 @@
                         <#nested "form">
 
                         <#if auth?has_content && auth.showTryAnotherWayLink() && showAnotherWayIfPresent>
-                            <form id="kc-select-try-another-way-form" class="${properties.kcFormGroupTryAnotherWayClass}" action="${url.loginAction}" method="post">
+                            <form id="kc-select-try-another-way-form" class="${properties.kcMediumMarginTop}" action="${url.loginAction}" method="post">
                                 <div class="${properties.kcFormGroupClass!}">
                                     <input type="hidden" name="tryAnotherWay" value="on"/>
                                     <a href="#" id="try-another-way"
@@ -160,12 +155,21 @@
                         </#if>
                     </div>
                     <footer class="pf-c-login__main-footer">
-                        
-                            <#if displayInfo>
+                        <#if auth?has_content && auth.showUsername() && !auth.showResetCredentials()>
+                            <#if !displayRequiredFields>
                                 <div class="pf-c-login__main-footer-band">
-                                    <#nested "info">
+                                    <p class="pf-c-login__main-footer-band-item">
+                                        <a id="reset-login" href="${url.loginRestartFlowUrl}">${msg("doBackToSignIn")}</a>
+                                    </p>
                                 </div>
                             </#if>
+                        </#if>
+
+                        <#if displayInfo>
+                            <div class="pf-c-login__main-footer-band">
+                                <#nested "info">
+                            </div>
+                        </#if>
                         
                     </footer>
                 </main>
