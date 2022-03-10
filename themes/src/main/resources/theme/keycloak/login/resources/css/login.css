@@ -384,6 +384,67 @@ ul#kc-totp-supported-apps {
     margin-bottom: 10px
 }
 
+/* Social icons */
+.kc-login-social.social-provider {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-color: #EDEDED;
+    background-repeat: no-repeat;
+}
+
+.kc-login-social.social-provider.stack-overflow {
+    background-image: url("../img/socialmedia/socialmedia_icons_stack_transparent.svg");
+}
+
+.kc-login-social.social-provider.linkedin {
+    background-image: url("../img/socialmedia/socialmedia_icons_linkedin_transparent.svg");
+}
+
+.kc-login-social.social-provider.twitter {
+    background-image: url("../img/socialmedia/socialmedia_icons_twitter_transparent.svg");
+}
+
+.kc-login-social.social-provider.facebook {
+    background-image: url("../img/socialmedia/socialmedia_icons_facebook_transparent.svg");
+}
+
+.kc-login-social.social-provider.google-plus {
+    background-image: url("../img/socialmedia/socialmedia_icons_googleplus_transparent.svg");
+}
+
+.kc-login-social.social-provider.windows {
+    background-image: url("../img/socialmedia/socialmedia_icons_microsoft_transparent.svg");
+}
+
+.kc-login-social.social-provider.github {
+    background-image: url("../img/socialmedia/socialmedia_icons_github_transparent.svg");
+}
+
+.kc-login-social.social-provider.instagram {
+    background-image: url("../img/socialmedia/socialmedia_icons_instagram_transparent.svg");
+}
+
+.kc-login-social.social-provider.openshift {
+    background-image: url("../img/socialmedia/socialmedia_icons_openshift_transparent.svg");
+}
+
+#social-links li {
+    text-align: center;
+    position: relative;
+}
+
+#social-links a {
+    margin-top: 8px;
+}
+
+#social-links .pf-c-tooltip.pf-m-top {
+    position: absolute;
+    bottom: 48px;
+    left: -25%;
+    right: -25%;
+}
+
 .kc-login-tooltip .kc-tooltip-text{
     top:-3px;
     left:160%;
