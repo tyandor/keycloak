@@ -93,8 +93,10 @@
                         <#if !(auth?has_content && auth.showUsername() && !auth.showResetCredentials())>
                             <#if displayRequiredFields>
                                 <div class="${properties.kcContentWrapperClass!}">
-                                    <h1 id="kc-page-title" class="pf-c-title pf-m-3xl"><#nested "header"></h1>
-                                    <div class="${properties.kcLabelWrapperClass!} ${properties.kcMediumMarginTop!} subtitle">${msg("allFieldsRequired")}</div>
+                                    <#--  <h1 id="kc-page-title" class="pf-c-title pf-m-3xl">  -->
+                                        <#nested "header">
+                                    <#--  </h1>  -->
+                                    <#--  <div class="${properties.kcLabelWrapperClass!} ${properties.kcMediumMarginTop!} subtitle">${msg("allFieldsRequired")}</div>  -->
                                 </div>
                             <#else>
                                 <h1 id="kc-page-title" class="pf-c-title pf-m-3xl"><#nested "header"></h1>

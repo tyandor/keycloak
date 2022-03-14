@@ -2,7 +2,10 @@
 <#import "user-profile-commons.ftl" as userProfileCommons>
 <@layout.registrationLayout displayMessage=messagesPerField.exists('global') displayRequiredFields=true; section>
     <#if section = "header">
-        ${msg("loginProfileTitle")}
+        <h1 id="kc-page-title" class="pf-c-title pf-m-3xl">${msg("loginProfileTitle")}</h1>
+        <#--  <#if displayRequiredFields>  -->
+            <div class="${properties.kcLabelWrapperClass!} ${properties.kcMediumMarginTop!} subtitle">${msg("allFieldsRequired")}</div>
+        <#--  </#if>  -->
     <#elseif section = "form">
         <form id="kc-update-profile-form" class="${properties.kcFormClass!}" action="${url.loginAction}" method="post">
 
@@ -19,7 +22,7 @@
                         <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" type="submit" value="${msg("doSubmit")}" />
                         <button class="${properties.kcButtonClass!} ${properties.kcButtonLargeClass!}" type="submit" name="cancel-aia" value="true" formnovalidate/>${msg("doCancel")}</button>
                     <#else>
-                        <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" type="submit" value="${msg("doSubmit")}" />
+                        <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!}" type="submit" value="${msg("doSubmit")}" />
                     </#if>
                 </div>
             </div>
