@@ -2,10 +2,9 @@
 <#import "user-profile-commons.ftl" as userProfileCommons>
 <@layout.registrationLayout displayMessage=messagesPerField.exists('global') displayRequiredFields=true; section>
     <#if section = "header">
+        <#assign formInputFields = profile.attributes>
         <h1 id="kc-page-title" class="pf-c-title pf-m-3xl">${msg("loginProfileTitle")}</h1>
-        <#--  <#if displayRequiredFields>  -->
-            <div class="${properties.kcLabelWrapperClass!} ${properties.kcMediumMarginTop!} subtitle">${msg("allFieldsRequired")}</div>
-        <#--  </#if>  -->
+        <@userProfileCommons.displayAllFieldsRequiredMsg formInputFields />
     <#elseif section = "form">
         <form id="kc-update-profile-form" class="${properties.kcFormClass!}" action="${url.loginAction}" method="post">
 

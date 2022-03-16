@@ -1,8 +1,7 @@
 <#macro userProfileFormFields>
 	<#assign currentGroup="">
-	
-	<#list profile.attributes as attribute>
-
+	<#assign formInputFields = profile.attributes>
+	<#list formInputFields as attribute>
 		<#assign groupName = attribute.group!"">
 		<#if groupName != currentGroup>
 			<#assign currentGroup=groupName>
@@ -32,14 +31,12 @@
 
 		<#nested "beforeField" attribute>
 		<div class="${properties.kcFormGroupClass!}">
-			<div class="${properties.kcLabelWrapperClass!}">
-				<label for="${attribute.name}" class="${properties.kcLabelClass!}">
-					<span class="pf-c-form__label-text">${advancedMsg(attribute.displayName!'')}</span>
-				</label>
-				<#if attribute.required>
-					<span class="pf-c-form__label-required" aria-hidden="true">*</span>
-				</#if>
-			</div>
+			<label for="${attribute.name}" class="${properties.kcLabelClass!}">
+				<span class="pf-c-form__label-text">${advancedMsg(attribute.displayName!'')}</span>
+			</label>
+			<#if attribute.required && !areAllFieldsRequired(formInputFields)>
+				<span class="pf-c-form__label-required" aria-hidden="true">*</span>
+			</#if>
 			<div class="${properties.kcInputWrapperClass!}">
 				<#if attribute.annotations.inputHelperTextBefore??>
 					<div class="${properties.kcInputHelperTextBeforeClass!}" id="form-help-text-before-${attribute.name}" aria-live="polite">${kcSanitize(advancedMsg(attribute.annotations.inputHelperTextBefore))?no_esc}</div>
@@ -189,3 +186,20 @@
 	</#if>
 	</#compress>
 </#macro>
+
+<#macro displayAllFieldsRequiredMsg formFields>
+	<#if areAllFieldsRequired(formFields)>
+		<div class="${properties.kcLabelWrapperClass!} ${properties.kcMediumMarginTop!} subtitle">${msg("allFieldsRequired")}</div>
+	</#if>
+</#macro>
+
+<#function areAllFieldsRequired formFields>
+	<#assign allFieldsRequired=true>
+	<#list formFields as inputField>
+		<#if !inputField.required>
+			<#assign allFieldsRequired=false>
+		</#if>
+	</#list>
+
+	<#return allFieldsRequired>
+</#function>
