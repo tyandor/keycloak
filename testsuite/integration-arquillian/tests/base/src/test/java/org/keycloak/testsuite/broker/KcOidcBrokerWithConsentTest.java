@@ -61,7 +61,7 @@ public class KcOidcBrokerWithConsentTest extends AbstractInitializedBaseBrokerTe
             grantPage.cancel();
 
             // Assert login page with "You took too long to login..." message
-            org.junit.Assert.assertEquals("Your login attempt timed out. Login will start from the beginning.", loginPage.getError());
+            org.junit.Assert.assertEquals("Log in attempt timed out. Log in will start from the beginning.", loginPage.getError());
 
         } finally {
             invokeTimeOffset(0);
@@ -87,7 +87,7 @@ public class KcOidcBrokerWithConsentTest extends AbstractInitializedBaseBrokerTe
             grantPage.cancel();
 
             // Assert login page with "You took too long to login..." message
-            Assert.assertEquals("Your login attempt timed out. Login will start from the beginning.", loginPage.getError());
+            Assert.assertEquals("Log in attempt timed out. Log in will start from the beginning.", loginPage.getError());
 
         } finally {
             invokeTimeOffset(0);
