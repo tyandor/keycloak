@@ -34,9 +34,9 @@
                     />
                 </div>
 
-                <div class="${properties.kcFormGroupClass!} ${properties.kcFormSettingClass!}">
-                    <div id="kc-form-options">
-                        <#if realm.rememberMe && !usernameEditDisabled??>
+                <#if realm.rememberMe && !usernameEditDisabled??>
+                    <div class="${properties.kcFormGroupClass!} ${properties.kcFormSettingClass!}">
+                        <div id="kc-form-options">
                             <div class="checkbox">
                                 <label>
                                     <#if login.rememberMe??>
@@ -46,20 +46,14 @@
                                     </#if>
                                 </label>
                             </div>
-                        </#if>
                         </div>
-                        <div class="${properties.kcFormOptionsWrapperClass!}">
-                            <#if realm.resetPasswordAllowed>
-                                <span><a tabindex="5" href="${url.loginResetCredentialsUrl}">${msg("doForgotPassword")}</a></span>
-                            </#if>
-                        </div>
+                    </div>
+                </#if>
 
-                  </div>
-
-                  <div id="kc-form-buttons" class="${properties.kcFormGroupClass!}">
-                      <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
-                      <input tabindex="4" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" name="login" id="kc-login" type="submit" value="${msg("doLogIn")}"/>
-                  </div>
+                <div id="kc-login-form-buttons" class="${properties.kcFormGroupClass!} ${properties.kcXLgMarginTop!}">
+                    <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
+                    <input tabindex="4" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" name="login" id="kc-login" type="submit" value="${msg("doLogIn")}"/>
+                </div>
             </form>
         </#if>
         </div>
@@ -69,14 +63,17 @@
         </#if>
 
     </div>
+    <#elseif section = "forgotPassword">
+        <#if realm.resetPasswordAllowed>
+            <p class="${properties.kcLoginMainFooterBandItemClass!}">
+                <a tabindex="5" href="${url.loginResetCredentialsUrl}">${msg("doForgotPassword")}</a>
+            </p>
+        </#if>
     <#elseif section = "info" >
         <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
-            <div id="kc-registration-container">
-                <div id="kc-registration">
-                    <span>${msg("noAccount")} <a tabindex="6"
-                                                 href="${url.registrationUrl}">${msg("doRegister")}</a></span>
-                </div>
-            </div>
+            <p id="kc-registration" class="${properties.kcLoginMainFooterBandItemClass!}">${msg("noAccount")} 
+                <a tabindex="6" href="${url.registrationUrl}">${msg("doRegister")}</a>
+            </p>
         </#if>
     </#if>
 </@layout.registrationLayout>

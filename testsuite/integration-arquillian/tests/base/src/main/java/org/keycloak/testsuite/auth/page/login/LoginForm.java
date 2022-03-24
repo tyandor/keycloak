@@ -46,7 +46,7 @@ public class LoginForm extends Form {
     @FindBy(name = "login")
     private WebElement loginButton;
 
-    @FindBy(xpath = "//div[@id='kc-registration']/span/a")
+    @FindBy(xpath = "//p[@id='kc-registration']/a")
     private WebElement registerLink;
     @FindBy(linkText = "Forgot Password?")
     private WebElement forgottenPassword;

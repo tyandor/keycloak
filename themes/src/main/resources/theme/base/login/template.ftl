@@ -122,7 +122,7 @@
                                 <#nested "show-username">
                                 <div id="kc-username" class="${properties.kcFormGroupClass!}">
                                     <#nested "loginTotpCodeInputTitle">
-                                    <label id="kc-attempted-username">${auth.attemptedUsername}</label>
+                                    <label id="kc-attempted-username">${msg("x509ModalHeader")}</label>
                                 </div>
                             </#if>
                         </#if>
@@ -131,7 +131,7 @@
                         <#-- App-initiated actions should not see warning messages about the need to complete the action -->
                         <#-- during login.                                                                               -->
                         <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
-                            <div class="alert-${message.type} ${properties.kcAlertClass!} pf-m-<#if message.type = 'error'>danger<#else>${message.type} ${properties.kcLargeMarginBottom!}</#if>">
+                            <div class="alert-${message.type} ${properties.kcAlertClass!} ${properties.kcLargeMarginBottom!} pf-m-<#if message.type = 'error'>danger<#else>${message.type} ${properties.kcLargeMarginBottom!}</#if>">
                                 <div class="pf-c-alert__icon">
                                     <#if message.type = 'success'><i class="${properties.kcFeedbackSuccessIcon!}" aria-hidden="true"></i></#if>
                                     <#if message.type = 'warning'><i class="${properties.kcFeedbackWarningIcon!}" aria-hidden="true"></i></#if>
@@ -144,33 +144,37 @@
 
                         <#nested "form">
 
-                        <#if auth?has_content && auth.showTryAnotherWayLink() && showAnotherWayIfPresent>
-                            <form id="kc-select-try-another-way-form" class="${properties.kcMediumMarginTop}" action="${url.loginAction}" method="post">
-                                <div class="${properties.kcFormGroupClass!}">
-                                    <input type="hidden" name="tryAnotherWay" value="on"/>
-                                    <a href="#" id="try-another-way"
-                                        onclick="document.forms['kc-select-try-another-way-form'].submit();return false;">${msg("doTryAnotherWay")}</a>
-                                </div>
-                            </form>
-                        </#if>
                     </div>
-                    <footer class="pf-c-login__main-footer">
+                    <footer class="${properties.kcLoginMainFooterClass!}">
                         <#if auth?has_content && auth.showUsername() && !auth.showResetCredentials()>
                             <#if !displayRequiredFields>
-                                <div class="pf-c-login__main-footer-band">
-                                    <p class="pf-c-login__main-footer-band-item">
-                                        <a id="reset-login" href="${url.loginRestartFlowUrl}">${msg("doBackToSignIn")}</a>
-                                    </p>
+                                <div class="${properties.kcLoginMainFooterBandClass!}">
+                                    <#if auth.showTryAnotherWayLink() && showAnotherWayIfPresent>
+                                        <form id="kc-select-try-another-way-form" action="${url.loginAction}" method="post">
+                                            <p class="${properties.kcLoginMainFooterBandItemClass!}">
+                                                <input type="hidden" name="tryAnotherWay" value="on"/>
+                                                <a href="#" id="try-another-way"
+                                                    onclick="document.forms['kc-select-try-another-way-form'].submit();return false;">${msg("doTryAnotherWay")}</a>
+                                            </p>
+                                        </form>
+                                        <#nested "forgotPassword">
+                                        <#if displayInfo>
+                                            <#nested "info">
+                                        </#if>
+                                    <#else>
+                                        <p class="${properties.kcLoginMainFooterBandItemClass!}">
+                                            <a id="reset-login" href="${url.loginRestartFlowUrl}">${msg("doBackToSignIn")}</a>
+                                        </p>
+                                    </#if>
+                                </div>
+                            </#if>
+                        <#else>
+                            <#if displayInfo>
+                                <div class="${properties.kcLoginMainFooterBandClass!}">
+                                    <#nested "info">
                                 </div>
                             </#if>
                         </#if>
-
-                        <#if displayInfo>
-                            <div class="pf-c-login__main-footer-band">
-                                <#nested "info">
-                            </div>
-                        </#if>
-                        
                     </footer>
                 </main>
             </div>
