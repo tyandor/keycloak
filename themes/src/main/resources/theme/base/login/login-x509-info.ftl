@@ -39,7 +39,7 @@
                 <div class="${properties.kcFormButtonsClass!}">
                     <div class="${properties.kcFormButtonsWrapperClass!} ${properties.kcActionListClass!}">
                         <div class="${properties.kcActionListItemClass!}">
-                            <button  id="kc-login" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" type="submit" name="login">${msg("doContinue")}</button>
+                            <button  id="kc-login" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!}" type="submit" name="login">${msg("doContinue")}</button>
                         </div>
                         <#if x509.formData.isUserEnabled??>
                             <div class="${properties.kcActionListItemClass!}">

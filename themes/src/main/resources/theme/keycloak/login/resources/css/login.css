@@ -84,12 +84,12 @@ textarea.pf-c-form-control {
 
 .pf-c-alert.pf-m-danger .pf-c-alert__icon {
     color: #C9190B;
-    color: var(--pf-global--danger-color--100);
+    color: var(--pf-global--palette--red-100);
 }
 
 .pf-c-alert.pf-m-danger .pf-c-alert__title {
-    color: #A30000;
-    color: var(--pf-global--danger-color--200);
+    color: #7D1007;
+    color: var(--pf-global--palette--red-300);
 }
 
 .pf-c-alert.pf-m-warning .pf-c-alert__icon {
@@ -250,7 +250,6 @@ div.kc-logo-text span {
 
 #kc-form-options .checkbox {
     margin-top: 0;
-    color: #72767b;
 }
 
 #kc-terms-text {
