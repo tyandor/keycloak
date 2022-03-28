@@ -98,6 +98,7 @@
                                 </div>
                             <#else>
                                 <h1 id="kc-page-title" class="pf-c-title pf-m-3xl"><#nested "header"></h1>
+                                <#nested "description">
                             </#if>
                         <#else>
                             <#if displayRequiredFields>
