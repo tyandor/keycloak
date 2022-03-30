@@ -35,12 +35,12 @@
             </#list>
         </ul>
         <script type="text/javascript">
-            const toggleTooltip = () => {
-                const socialProviderEl = document.getElementById("social-links");
+            function toggleTooltip() {
+                var socialProviderEl = document.getElementById("social-links");
                 if (socialProviderEl) {
-                    const socialListItems = socialProviderEl.querySelectorAll(".pf-c-login__main-footer-links-item.social-login-provider");
+                    var socialListItems = socialProviderEl.querySelectorAll(".pf-c-login__main-footer-links-item.social-login-provider");
                     socialListItems.forEach(socialProvider => {
-                        const tooltip = socialProvider.querySelector(".pf-c-tooltip.pf-m-top");
+                        var tooltip = socialProvider.querySelector(".pf-c-tooltip.pf-m-top");
                         socialProvider.addEventListener('mouseover', () => tooltip.classList.add('show'));
                         socialProvider.addEventListener('mouseout', () => tooltip.classList.remove('show'));
                     });
