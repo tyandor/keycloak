@@ -48,15 +48,15 @@
                     <header class="${properties.kcLoginMainHeaderClass!}">
                         <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
                             <script type="text/javascript">
-                                const toggleIntlMenu = () => {
-                                    const dropdownButton = document.getElementById('kc-current-locale-link');
+                                function toggleIntlMenu() {
+                                    var dropdownButton = document.getElementById('kc-current-locale-link');
                                     if (dropdownButton && dropdownButton.hasAttribute('aria-expanded')) {
                                         if (dropdownButton.ariaExpanded === 'false') {
                                             dropdownButton.ariaExpanded = 'true';
                                         } else {
                                             dropdownButton.ariaExpanded = 'false';
                                         }
-                                        const localeList = document.querySelector('.pf-c-dropdown__menu');
+                                        var localeList = document.querySelector('.pf-c-dropdown__menu');
                                         if (localeList) {
                                             if(localeList.hasAttribute('hidden')) {
                                                 localeList.removeAttribute('hidden');
