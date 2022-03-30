@@ -29,7 +29,7 @@
                             <div class="${properties.kcFormSocialProviderTooltipArrow!}"></div>
                             <div id="tooltip-top-content" class="${properties.kcFormSocialProviderTooltipContent!}">${msg("socialProviderTooltip", (providerDisplay))}</div>
                         </div>
-                        <a href="#" id="social-provider-link-${p.alias}" class="${properties.kcFormSocialProviderIconLink!} ${properties.kcFormSocialProvider!} ${providerCode}" title="${providerCode}"></a>
+                        <a href="${p.loginUrl}" id="social-provider-link-${p.alias}" class="${properties.kcFormSocialProviderIconLink!} ${properties.kcFormSocialProvider!} ${providerCode}" title="${providerCode}"></a>
                     </li>
                 </#if>
             </#list>
