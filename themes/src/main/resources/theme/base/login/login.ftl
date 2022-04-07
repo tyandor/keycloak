@@ -62,7 +62,7 @@
                     </div>
                 </#if>
 
-                <div id="kc-form-buttons" class="${properties.kcFormGroupClass!} ${properties.kcXLgMarginTop!}">
+                <div id="kc-login-form-buttons" class="${properties.kcFormGroupClass!} ${properties.kcXLgMarginTop!}">
                     <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
                     <input tabindex="4" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!}" name="login" id="kc-login" type="submit" value="${msg("doLogIn")}"/>
                 </div>
