@@ -60,10 +60,10 @@
             </#if>
             <div class="${properties.kcFormGroupClass!}">
                 <#if isAppInitiatedAction??>
-                    <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" type="submit" value="${msg("doSubmit")}" />
+                    <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!}" type="submit" value="${msg("doChangePassword")}" />
                     <button class="${properties.kcButtonClass!} pf-m-link" type="submit" name="cancel-aia" value="true" />${msg("doCancel")}</button>
                 <#else>
-                    <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!} ${properties.kcSmallMarginTop!}" type="submit" value="${msg("doSubmit")}" />
+                    <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcXLgMarginTop!}" type="submit" value="${msg("doChangePassword")}" />
                 </#if>
             </div>
         </form>

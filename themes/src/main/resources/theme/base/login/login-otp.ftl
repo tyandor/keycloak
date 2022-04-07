@@ -48,7 +48,7 @@
 
                 <div id="kc-otp-form-buttons" class="${properties.kcFormButtonsClass!}">
                     <input
-                        class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}"
+                        class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!}"
                         name="login" id="kc-login" type="submit" value="${msg("doLogIn")}" />
                 </div>
             </div>
