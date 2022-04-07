@@ -1,4 +1,4 @@
-<#macro registrationLayout bodyClass="" displayInfo=false displayMessage=true displayRequiredFields=false showAnotherWayIfPresent=true>
+<#macro registrationLayout bodyClass="" displayInfo=false displayMessage=true displayRequiredFields=false showAnotherWayIfPresent=true displayX509=false>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" class="${properties.kcHtmlClass!}">
 
@@ -122,7 +122,11 @@
                                 <#nested "show-username">
                                 <div id="kc-username" class="${properties.kcFormGroupClass!}">
                                     <#nested "loginTotpCodeInputTitle">
-                                    <label id="kc-attempted-username">${msg("x509ModalHeader")}</label>
+                                    <#if auth.attemptedUsername?has_content && displayX509>
+                                        <label id="kc-attempted-username">${msg("x509ModalHeader")}</label>
+                                    <#else>
+                                        <label id="kc-attempted-username">${auth.attemptedUsername}</label>
+                                    </#if>
                                 </div>
                             </#if>
                         </#if>
