@@ -47,6 +47,9 @@ public class LoginPasswordResetPage extends LanguageComboboxAwarePage {
     @FindBy(id = "kc-info-wrapper")
     private WebElement infoWrapper;
 
+    @FindBy(className = "pf-c-login__main-header-desc")
+    private WebElement description;
+
     public void changePassword() {
         submitButton.click();
     }
@@ -59,7 +62,7 @@ public class LoginPasswordResetPage extends LanguageComboboxAwarePage {
     }
 
     public boolean isCurrent() {
-        return PageUtils.getPageTitle(driver).equals("Forgot Your Password?");
+        return PageUtils.getPageTitle(driver).equals("Forgot password");
     }
 
     public void open() {
@@ -94,9 +97,9 @@ public class LoginPasswordResetPage extends LanguageComboboxAwarePage {
         backToLogin.click();
     }
 
-    public String getInfoMessage() {
+    public String getDescription() {
         try {
-            return UIUtils.getTextFromElement(infoWrapper);
+            return UIUtils.getTextFromElement(description);
         } catch (NoSuchElementException e) {
             return null;
         }

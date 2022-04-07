@@ -1169,7 +1169,7 @@ public class ResetPasswordTest extends AbstractTestRealmKeycloakTest {
 
             resetPasswordPage.assertCurrent();
 
-            assertEquals("Enter your username or email address and we will send you instructions on how to create a new password.", resetPasswordPage.getInfoMessage());
+            assertEquals("Receive a link to reset your password for your account.", resetPasswordPage.getDescription());
 
             realmRep.setLoginWithEmailAllowed(false);
             realmRep.setDuplicateEmailsAllowed(true);
@@ -1179,8 +1179,6 @@ public class ResetPasswordTest extends AbstractTestRealmKeycloakTest {
             loginPage.resetPassword();
 
             resetPasswordPage.assertCurrent();
-
-            assertEquals("Enter your username and we will send you instructions on how to create a new password.", resetPasswordPage.getInfoMessage());
         } finally {
             realmRep.setLoginWithEmailAllowed(originalLoginWithEmailAllowed);
             realmRep.setDuplicateEmailsAllowed(originalDuplicateEmailsAllowed);
