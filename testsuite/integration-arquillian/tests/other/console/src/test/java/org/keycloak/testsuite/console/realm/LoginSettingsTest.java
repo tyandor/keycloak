@@ -181,8 +181,8 @@ public class LoginSettingsTest extends AbstractRealmTest {
         testRealmAdminConsolePage.navigateTo();
         testRealmLoginPage.form().forgotPassword();
         
-        Assert.assertEquals("Enter your username or email address and we will send you instructions on how to create a new password.", 
-                testRealmForgottenPasswordPage.getInfoMessage());
+        Assert.assertEquals("Receive a link to reset your password for your account.",
+                testRealmForgottenPasswordPage.getDescription());
         log.info("verified reset password is enabled");
         
         log.info("disabling reset password");
