@@ -43,6 +43,14 @@ textarea.pf-c-form-control {
 	font-size: var(--pf-global--FontSize--sm);
 }
 
+.pf-c-alert.pf-m-inline .pf-c-alert__icon {
+    padding: 1rem 0.5rem 1rem 1rem;
+    padding: var(--pf-c-alert--m-inline__icon--PaddingTop) var(--pf-c-alert--m-inline__icon--PaddingRight) var(--pf-c-alert--m-inline__icon--PaddingBottom) var(--pf-c-alert--m-inline__icon--PaddingLeft);
+    font-size: 16px;
+    font-size: var(--pf-c-alert--m-inline__icon--FontSize);
+    --pf-c-alert__icon--MarginTop: .15rem;
+  }
+
 .pf-c-alert.pf-m-inline::before {
     position: absolute;
     top: -1px;
@@ -713,6 +721,10 @@ ul#kc-totp-supported-apps {
 
 #kc-back {
     margin-top: 5px;
+}
+
+.pf-c-login__main-body{
+  --pf-c-login__main-body--PaddingBottom: 3rem;
 }
 
 .pf-c-login__container {

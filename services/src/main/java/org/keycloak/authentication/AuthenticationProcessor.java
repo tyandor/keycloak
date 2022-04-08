@@ -101,6 +101,11 @@ public class AuthenticationProcessor {
     protected ForwardedFormMessageStore forwardedErrorMessageStore = new ForwardedFormMessageStore(ForwardedFormMessageType.ERROR);
 
     /**
+     * This could be a warning message forwarded from another authenticator
+     */
+    protected ForwardedFormMessageStore forwardedWarningMessageStore = new ForwardedFormMessageStore(ForwardedFormMessageType.WARNING);
+
+    /**
      * This could be an success message forwarded from another authenticator
      */
     protected ForwardedFormMessageStore forwardedSuccessMessageStore = new ForwardedFormMessageStore(ForwardedFormMessageType.SUCCESS);
@@ -211,6 +216,11 @@ public class AuthenticationProcessor {
      */
     public AuthenticationProcessor setFlowPath(String flowPath) {
         this.flowPath = flowPath;
+        return this;
+    }
+
+    public AuthenticationProcessor setForwardedWarningMessage(FormMessage forwardedWarningMessage) {
+        this.forwardedWarningMessageStore.setForwardedMessage(forwardedWarningMessage);
         return this;
     }
 
@@ -494,6 +504,10 @@ public class AuthenticationProcessor {
             return AuthenticationProcessor.this.forwardedErrorMessageStore.getForwardedMessage();
         }
 
+        public FormMessage getForwardedWarningMessage() {
+            return AuthenticationProcessor.this.forwardedWarningMessageStore.getForwardedMessage();
+        }
+
         @Override
         public String generateAccessCode() {
             return generateCode();
@@ -528,6 +542,9 @@ public class AuthenticationProcessor {
             } else if (getForwardedSuccessMessage() != null) {
                 provider.addSuccess(getForwardedSuccessMessage());
                 forwardedSuccessMessageStore.removeForwardedMessage();
+            } else if (getForwardedWarningMessage() != null){
+                provider.addWarning(getForwardedWarningMessage());
+                forwardedWarningMessageStore.removeForwardedMessage();
             }
             return provider;
         }
@@ -1139,7 +1156,7 @@ public class AuthenticationProcessor {
     }
 
     private enum ForwardedFormMessageType {
-        SUCCESS("fwMessageSuccess"), ERROR("fwMessageError");
+        SUCCESS("fwMessageSuccess"), ERROR("fwMessageError"), WARNING( "fwMessageWarning");
 
         private final String key;
 

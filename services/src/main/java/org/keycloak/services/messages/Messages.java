@@ -22,7 +22,10 @@ package org.keycloak.services.messages;
 public class Messages {
 
     public static final String DISPLAY_UNSUPPORTED = "displayUnsupported";
+    
     public static final String LOGIN_TIMEOUT = "loginTimeout";
+    
+    public static final String LOGIN_TIMEOUT_HEADER = "loginTimeoutHeader";
 
     public static final String INVALID_USER = "invalidUserMessage";
 
@@ -273,10 +276,13 @@ public class Messages {
     // OAuth 2.0 Device Authorization Grant
     public static final String OAUTH2_DEVICE_AUTHORIZATION_GRANT_DISABLED = "oauth2DeviceAuthorizationGrantDisabledMessage";
     public static final String OAUTH2_DEVICE_INVALID_USER_CODE = "oauth2DeviceInvalidUserCodeMessage";
+    public static final String OAUTH2_DEVICE_INVALID_USER_CODE_HEADER = "oauth2DeviceInvalidUserCodeMessageHeader";
     public static final String OAUTH2_DEVICE_EXPIRED_USER_CODE = "oauth2DeviceExpiredUserCodeMessage";
+    public static final String OAUTH2_DEVICE_EXPIRED_USER_CODE_HEADER = "oauth2DeviceExpiredUserCodeMessageHeader";
     public static final String OAUTH2_DEVICE_VERIFICATION_COMPLETE = "oauth2DeviceVerificationCompleteMessage";
     public static final String OAUTH2_DEVICE_VERIFICATION_COMPLETE_HEADER = "oauth2DeviceVerificationCompleteHeader";
     public static final String OAUTH2_DEVICE_VERIFICATION_FAILED = "oauth2DeviceVerificationFailedMessage";
     public static final String OAUTH2_DEVICE_VERIFICATION_FAILED_HEADER = "oauth2DeviceVerificationFailedHeader";
     public static final String OAUTH2_DEVICE_CONSENT_DENIED = "oauth2DeviceConsentDeniedMessage";
+    public static final String OAUTH2_DEVICE_CONSENT_DENIED_HEADER = "oauth2DeviceConsentDeniedHeader";
 }

@@ -2,15 +2,21 @@
 <@layout.registrationLayout; section>
     <#if section = "header">
         ${msg("oauth2DeviceVerificationTitle")}
+    <#elseif section = "subHeader">
+        <div class="${properties.kcLabelWrapperClass!}">
+            <label for="device-user-code" class="${properties.kcFormLabelClass!}">${msg("verifyOAuth2DeviceUserCode")}</label>
+        </div>
+    <#elseif section = "errorDesc">
+        ${msg("oauth2DeviceInvalidUserCodeTitle")}
     <#elseif section = "form">
-        <form id="kc-user-verify-device-user-code-form" class="${properties.kcFormClass!}" action="${url.oauth2DeviceVerificationAction}" method="post">
-            <div class="${properties.kcFormGroupClass!}">
-                <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="device-user-code" class="${properties.kcLabelClass!}">${msg("verifyOAuth2DeviceUserCode")}</label>
-                </div>
-
+    
+        <form id="kc-user-verify-device-user-code-form" class="${properties.kcFormClass!} ${properties.kcMdTopPadding} ${properties.kcMdBottomMargin}" action="${url.oauth2DeviceVerificationAction}" method="post">
+            <div class="${properties.kcFormGroupClass!} ${properties.kcLargeMarginTop}">
                 <div class="${properties.kcInputWrapperClass!}">
-                    <input id="device-user-code" name="device_user_code" autocomplete="off" type="text" class="${properties.kcInputClass!}" autofocus />
+                    <label class=${properties.kcFormLabelClass}>
+                        <span class="${properties.kcLabelClass}">${msg("oauth2DeviceCodeLabel")}</span>
+                    </label>
+                    <input id="device-user-code" placeholder="XXXX-XXXX" name="device_user_code" autocomplete="off" type="text" class="${properties.kcInputClass!}" autofocus />
                 </div>
             </div>
 
@@ -22,7 +28,7 @@
 
                 <div id="kc-form-buttons" class="${properties.kcFormButtonsClass!}">
                     <div class="${properties.kcFormButtonsWrapperClass!}">
-                        <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" type="submit" value="${msg("doSubmit")}"/>
+                        <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!}" type="submit" value="${msg("doSubmit")}"/>
                     </div>
                 </div>
             </div>

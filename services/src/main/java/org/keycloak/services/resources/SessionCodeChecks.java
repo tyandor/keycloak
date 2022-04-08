@@ -323,7 +323,8 @@ public class SessionCodeChecks {
 
             AuthenticationProcessor.resetFlow(authSession, LoginActionsService.AUTHENTICATE_PATH);
 
-            authSession.setAuthNote(LoginActionsService.FORWARDED_ERROR_MESSAGE_NOTE, Messages.LOGIN_TIMEOUT);
+            authSession.setAuthNote(LoginActionsService.FORWARDED_WARNING_MESSAGE_NOTE, Messages.LOGIN_TIMEOUT);
+            authSession.setAuthNote(LoginActionsService.FORWARDED_WARNING_MESSAGE_TITLE, Messages.LOGIN_TIMEOUT_HEADER);
 
             URI redirectUri = getLastExecutionUrl(LoginActionsService.AUTHENTICATE_PATH, null, tabId);
             logger.debugf("Flow restart after timeout. Redirecting to %s", redirectUri);
@@ -387,7 +388,9 @@ public class SessionCodeChecks {
             event.error(Errors.EXPIRED_CODE);
 
             String warningMessage = Messages.LOGIN_TIMEOUT;
-            authSession.setAuthNote(LoginActionsService.FORWARDED_ERROR_MESSAGE_NOTE, warningMessage);
+            authSession.setAuthNote(LoginActionsService.FORWARDED_WARNING_MESSAGE_NOTE, warningMessage);
+            String warningTitle = Messages.LOGIN_TIMEOUT_HEADER;
+            authSession.setAuthNote(LoginActionsService.FORWARDED_WARNING_MESSAGE_TITLE, warningTitle);
 
             String flowPath = authSession.getClientNote(AuthorizationEndpointBase.APP_INITIATED_FLOW);
             if (flowPath == null) {

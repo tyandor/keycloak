@@ -121,8 +121,12 @@ public class LoginActionsService {
     public static final String POST_BROKER_LOGIN_PATH = "post-broker-login";
 
     public static final String RESTART_PATH = "restart";
-
+    
+    public static final String FORWARDED_ERROR_MESSAGE_TITLE = "forwardedErrorTitle";
     public static final String FORWARDED_ERROR_MESSAGE_NOTE = "forwardedErrorMessage";
+
+    public static final String FORWARDED_WARNING_MESSAGE_TITLE = "forwardedWarningTitle";
+    public static final String FORWARDED_WARNING_MESSAGE_NOTE = "forwardedWarningMessage";
 
     public static final String SESSION_CODE = "session_code";
     public static final String AUTH_SESSION_ID = "auth_session_id";
@@ -302,7 +306,28 @@ public class LoginActionsService {
         String forwardedErrorMessage = authSession.getAuthNote(FORWARDED_ERROR_MESSAGE_NOTE);
         if (forwardedErrorMessage != null) {
             authSession.removeAuthNote(FORWARDED_ERROR_MESSAGE_NOTE);
-            processor.setForwardedErrorMessage(new FormMessage(null, forwardedErrorMessage));
+            FormMessage responseErrorMessage = new FormMessage(null, forwardedErrorMessage);
+            String forwardedErrorTitle = authSession.getAuthNote(FORWARDED_ERROR_MESSAGE_TITLE);
+
+            if(forwardedErrorTitle != null) {
+              authSession.removeAuthNote(FORWARDED_ERROR_MESSAGE_TITLE);
+              responseErrorMessage.setTitle(forwardedErrorTitle);
+            }
+            processor.setForwardedErrorMessage(responseErrorMessage);
+        }
+
+        // Check the forwarded warning message, which was set by previous HTTP request
+        String forwardedWarningMessage = authSession.getAuthNote(FORWARDED_WARNING_MESSAGE_NOTE);
+        if (forwardedWarningMessage != null) {
+            authSession.removeAuthNote(FORWARDED_WARNING_MESSAGE_NOTE);
+            FormMessage responseWarningMessage = new FormMessage(null, forwardedWarningMessage);
+            String forwardedWarningTitle = authSession.getAuthNote(FORWARDED_WARNING_MESSAGE_TITLE);
+
+            if(forwardedWarningTitle != null) {
+                authSession.removeAuthNote(FORWARDED_WARNING_MESSAGE_TITLE);
+                responseWarningMessage.setTitle(forwardedWarningTitle);
+            }
+            processor.setForwardedWarningMessage(responseWarningMessage);
         }
 
 

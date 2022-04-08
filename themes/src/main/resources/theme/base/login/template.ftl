@@ -92,12 +92,16 @@
                         </#if>
                         <#if !(auth?has_content && auth.showUsername() && !auth.showResetCredentials())>
                             <#if displayRequiredFields>
-                                <div class="${properties.kcContentWrapperClass!}">
-                                    <#nested "header">
+                                <div class="${properties.kcXLBottomPadding!}">
+                                    <h1 id="kc-page-title" class="pf-c-title pf-m-3xl"><#nested "header"></h1>
+                                    <span class="${properties.kcSubHeaderClass}"><#nested "subHeader"></span>
+                                    <div class="${properties.kcLabelWrapperClass!} subtitle">
+                                        <span class="subtitle"><span class="required">*</span> ${msg("requiredFields")}</span>
+                                    </div>
                                 </div>
                             <#else>
                                 <h1 id="kc-page-title" class="pf-c-title pf-m-3xl"><#nested "header"></h1>
-                                <#nested "description">
+                                <span class="${properties.kcSubHeaderClass}"><#nested "subHeader"></span>
                             </#if>
                         <#else>
                             <#if displayRequiredFields>
@@ -127,21 +131,34 @@
                             </#if>
                         </#if>
                     </header>
-                    <div class="${properties.kcLoginMainBodyClass!}">
+                    <div class="${properties.kcMainBody}">
                         <#-- App-initiated actions should not see warning messages about the need to complete the action -->
                         <#-- during login.                                                                               -->
                         <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
-                            <div class="alert-${message.type} ${properties.kcAlertClass!} pf-m-<#if message.type = 'error'>danger<#else>${message.type} ${properties.kcLargeMarginBottom!}</#if>">
+                            <div class="${properties.kcAlertClass!} pf-m-<#if message.type = 'error'>danger<#else>${message.type}</#if>" >
                                 <div class="pf-c-alert__icon">
-                                    <#if message.type = 'success'><i class="${properties.kcFeedbackSuccessIcon!}" aria-hidden="true"></i></#if>
-                                    <#if message.type = 'warning'><i class="${properties.kcFeedbackWarningIcon!}" aria-hidden="true"></i></#if>
-                                    <#if message.type = 'error'><i class="${properties.kcFeedbackErrorIcon!}" aria-hidden="true"></i></#if>
-                                    <#if message.type = 'info'><i class="${properties.kcFeedbackInfoIcon!}" aria-hidden="true"></i></#if>
+                                    <#if message.type = 'success'><i class="${properties.kcFeedbackSuccessIcon!}"></i></#if>
+                                    <#if message.type = 'warning'><i class="${properties.kcFeedbackWarningIcon!}"></i></#if>
+                                    <#if message.type = 'error'><i class="${properties.kcFeedbackErrorIcon!}"></i></#if>
+                                    <#if message.type = 'info'><i class="${properties.kcFeedbackInfoIcon!}"></i></#if>
                                 </div>
-                                <p class="${properties.kcAlertTitleClass!}">${kcSanitize(message.summary)?no_esc}</p>
+                                <#if message.title?has_content >
+                                    <p class="${properties.kcAlertTitleRaw!}">
+                                        <span class="${properties.kcScreenReader!}">${kcSanitize(message.title)}</span>
+                                        ${kcSanitize(message.title)}
+                                    </p>
+                                    <div class="pf-c-alert__description">
+                                        <p>${kcSanitize(message.summary)?no_esc}</p>
+                                    </div>
+                                <#else>
+                                    <p class="${properties.kcAlertTitleRaw!}">
+                                        <span class="${properties.kcScreenReader!}">${kcSanitize(message.summary)}</span>
+                                        ${kcSanitize(message.summary)}
+                                    </p>
+                                </#if>
+                                <br>
                             </div>
                         </#if>
-
                         <#nested "form">
 
                         <#if auth?has_content && auth.showTryAnotherWayLink() && showAnotherWayIfPresent>

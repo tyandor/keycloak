@@ -373,9 +373,11 @@ public class FreeMarkerLoginFormsProvider implements LoginFormsProvider {
             MessageBean wholeMessage = new MessageBean(null, messageType);
             for (FormMessage message : this.messages) {
                 String formattedMessageText = formatMessage(message, messagesBundle, locale);
+                String formattedMessageTitle = formatMessageTitle(message, messagesBundle, locale);
                 if (formattedMessageText != null) {
                     wholeMessage.appendSummaryLine(formattedMessageText);
-                    messagesPerField.addMessage(message.getField(), formattedMessageText, messageType);
+                    wholeMessage.appendTitle(formattedMessageTitle);
+                    messagesPerField.addMessage(message.getField(), formattedMessageText, formattedMessageTitle, messageType);
                 }
             }
             attributes.put("message", wholeMessage);
@@ -668,6 +670,16 @@ public class FreeMarkerLoginFormsProvider implements LoginFormsProvider {
         }
     }
 
+    protected String formatMessageTitle(FormMessage message, Properties messagesBundle, Locale locale) {
+        if (message == null)
+            return null;
+        if (message.getTitle() != null && messagesBundle.containsKey(message.getTitle())) {
+            return new MessageFormat(messagesBundle.getProperty(message.getTitle()), locale).format(message.getParameters());
+        } else {
+            return message.getTitle();
+        }
+    }
+
     @Override
     public FreeMarkerLoginFormsProvider setError(String message, Object... parameters) {
         setMessage(MessageType.ERROR, message, parameters);
@@ -694,6 +706,21 @@ public class FreeMarkerLoginFormsProvider implements LoginFormsProvider {
             this.messages = new LinkedList<>();
         }
         this.messages.add(errorMessage);
+        return this;
+
+    }
+
+    @Override
+    public LoginFormsProvider addWarning(FormMessage warningMessage) {
+        if (this.messageType != MessageType.WARNING) {
+            this.messageType = null;
+            this.messages = null;
+        }
+        if (messages == null) {
+            this.messageType = MessageType.WARNING;
+            this.messages = new LinkedList<>();
+        }
+        this.messages.add(warningMessage);
         return this;
 
     }

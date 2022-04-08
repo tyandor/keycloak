@@ -22,6 +22,7 @@ package org.keycloak.theme.beans;
 public class MessageBean {
 
     private String summary;
+    private String title;
 
     private MessageType type;
 
@@ -30,8 +31,18 @@ public class MessageBean {
         this.type = type;
     }
 
+    public MessageBean(String message, MessageType type, String title) {
+        this.summary = message;
+        this.type = type;
+        this.title = title;
+    }
+
     public String getSummary() {
         return summary;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void appendSummaryLine(String newLine) {
@@ -41,6 +52,17 @@ public class MessageBean {
             summary = newLine;
         else
             summary = summary + "<br>" + newLine;
+    }
+
+    public MessageBean appendTitle(String newLine) {
+        if (newLine == null)
+            return this;
+        if (title == null)
+            title = newLine;
+        else
+            title = title + "<br>" + newLine;
+
+        return this;
     }
 
     public String getType() {
