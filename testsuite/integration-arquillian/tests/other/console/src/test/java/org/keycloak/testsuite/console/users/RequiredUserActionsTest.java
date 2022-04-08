@@ -83,7 +83,7 @@ public class RequiredUserActionsTest extends AbstractUserTest {
         testRealmAccountPage.navigateTo();
 
         testRealmLoginPage.form().login(testUser);
-        waitForFeedbackText("You need to change your password to activate your account.");
+        waitForFeedbackText("Change your password to activate your account.");
 
         testRealmUpdatePasswordPage.updatePasswords(null, null);
         waitForFeedbackText("Please specify password.");

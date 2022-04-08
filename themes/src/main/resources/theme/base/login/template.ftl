@@ -48,15 +48,15 @@
                     <header class="${properties.kcLoginMainHeaderClass!}">
                         <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
                             <script type="text/javascript">
-                                const toggleIntlMenu = () => {
-                                    const dropdownButton = document.getElementById('kc-current-locale-link');
+                                function toggleIntlMenu() {
+                                    var dropdownButton = document.getElementById('kc-current-locale-link');
                                     if (dropdownButton && dropdownButton.hasAttribute('aria-expanded')) {
                                         if (dropdownButton.ariaExpanded === 'false') {
                                             dropdownButton.ariaExpanded = 'true';
                                         } else {
                                             dropdownButton.ariaExpanded = 'false';
                                         }
-                                        const localeList = document.querySelector('.pf-c-dropdown__menu');
+                                        var localeList = document.querySelector('.pf-c-dropdown__menu');
                                         if (localeList) {
                                             if(localeList.hasAttribute('hidden')) {
                                                 localeList.removeAttribute('hidden');
@@ -125,13 +125,8 @@
                             <#else>
                                 <#nested "show-username">
                                 <div id="kc-username" class="${properties.kcFormGroupClass!}">
+                                    <#nested "loginTotpCodeInputTitle">
                                     <label id="kc-attempted-username">${auth.attemptedUsername}</label>
-                                    <a id="reset-login" href="${url.loginRestartFlowUrl}">
-                                        <div class="kc-login-tooltip">
-                                            <i class="${properties.kcResetFlowIcon!}"></i>
-                                            <span class="kc-tooltip-text">${msg("restartLoginTooltip")}</span>
-                                        </div>
-                                    </a>
                                 </div>
                             </#if>
                         </#if>
@@ -167,7 +162,7 @@
                         <#nested "form">
 
                         <#if auth?has_content && auth.showTryAnotherWayLink() && showAnotherWayIfPresent>
-                            <form id="kc-select-try-another-way-form" class="${properties.kcFormGroupTryAnotherWayClass}" action="${url.loginAction}" method="post">
+                            <form id="kc-select-try-another-way-form" class="${properties.kcMediumMarginTop}" action="${url.loginAction}" method="post">
                                 <div class="${properties.kcFormGroupClass!}">
                                     <input type="hidden" name="tryAnotherWay" value="on"/>
                                     <a href="#" id="try-another-way"
@@ -177,12 +172,21 @@
                         </#if>
                     </div>
                     <footer class="pf-c-login__main-footer">
-                        
-                            <#if displayInfo>
+                        <#if auth?has_content && auth.showUsername() && !auth.showResetCredentials()>
+                            <#if !displayRequiredFields>
                                 <div class="pf-c-login__main-footer-band">
-                                    <#nested "info">
+                                    <p class="pf-c-login__main-footer-band-item">
+                                        <a id="reset-login" href="${url.loginRestartFlowUrl}">${msg("doBackToSignIn")}</a>
+                                    </p>
                                 </div>
                             </#if>
+                        </#if>
+
+                        <#if displayInfo>
+                            <div class="pf-c-login__main-footer-band">
+                                <#nested "info">
+                            </div>
+                        </#if>
                         
                     </footer>
                 </main>

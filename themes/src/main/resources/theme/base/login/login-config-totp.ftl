@@ -8,7 +8,7 @@
             <li>
                 <p>${msg("loginTotpStep1")}</p>
 
-                <ul id="kc-totp-supported-apps">
+                <ul id="kc-totp-supported-apps" class="${properties.kcMediumMarginTop!}">
                     <#list totp.policy.supportedApplications as app>
                         <li>${app}</li>
                     </#list>
@@ -49,10 +49,12 @@
             </li>
         </ol>
 
-        <form action="${url.loginAction}" class="${properties.kcFormClass!}" id="kc-totp-settings-form" method="post">
+        <form action="${url.loginAction}" class="${properties.kcFormClass!} ${properties.kcMediumMarginTop!}" id="kc-totp-settings-form" method="post">
             <div class="${properties.kcFormGroupClass!}">
-                <div class="${properties.kcInputWrapperClass!}">
-                    <label for="totp" class="control-label">${msg("authenticatorCode")}</label> <span class="required">*</span>
+                <div class="${properties.kcLabelWrapperClass!}">
+                    <label for="totp" class="control-label ${properties.kcLabelClass!}">
+                        <span class="${properties.kcLabelTextClass!}">${msg("authenticatorCode")}</span>
+                    </label> <span class="required">*</span>
                 </div>
                 <div class="${properties.kcInputWrapperClass!}">
                     <input type="text" id="totp" name="totp" autocomplete="off" class="${properties.kcInputClass!}"
@@ -71,8 +73,13 @@
             </div>
 
             <div class="${properties.kcFormGroupClass!}">
-                <div class="${properties.kcInputWrapperClass!}">
-                    <label for="userLabel" class="control-label">${msg("loginTotpDeviceName")}</label> <#if totp.otpCredentials?size gte 1><span class="required">*</span></#if>
+                <div class="${properties.kcLabelWrapperClass!}">
+                    <label for="userLabel" class="control-label ${properties.kcLabelClass!}">
+                        <span class="${properties.kcLabelTextClass!}">${msg("loginTotpDeviceName")}</span>
+                    </label>
+                    <#if totp.otpCredentials?size gte 1>
+                        <span class="required">*</span>
+                    </#if>
                 </div>
 
                 <div class="${properties.kcInputWrapperClass!}">
@@ -89,17 +96,19 @@
             </div>
 
             <#if isAppInitiatedAction??>
-                <input type="submit"
-                       class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}"
-                       id="saveTOTPBtn" value="${msg("doSubmit")}"
-                />
-                <button type="submit"
-                        class="${properties.kcButtonClass!} ${properties.kcButtonLargeClass!}"
-                        id="cancelTOTPBtn" name="cancel-aia" value="true" />${msg("doCancel")}
-                </button>
+                <div class="${properties.kcFormGroupClass!} ${properties.kcXLgMarginTop!}">
+                    <input type="submit"
+                        class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcMediumMarginRight!}"
+                        id="saveTOTPBtn" value="${msg("doSubmit")}"
+                    />
+                    <button type="submit"
+                            class="${properties.kcButtonClass!} ${properties.kcButtonLinkClass!}"
+                            id="cancelTOTPBtn" name="cancel-aia" value="true" />${msg("doCancel")}
+                    </button>
+                </div>
             <#else>
                 <input type="submit"
-                       class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}"
+                       class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!}"
                        id="saveTOTPBtn" value="${msg("doSubmit")}"
                 />
             </#if>

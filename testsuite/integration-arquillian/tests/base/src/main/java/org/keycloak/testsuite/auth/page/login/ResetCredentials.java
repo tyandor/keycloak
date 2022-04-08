@@ -45,6 +45,9 @@ public class ResetCredentials extends LoginActions {
 
     @FindBy(id = "kc-info")
     private WebElement info;
+
+    @FindBy(className = "pf-c-login__main-header-desc")
+    private WebElement description;
     
     public void resetCredentials(String usernameOrEmail) {
         setTextInputValue(usernameOrEmailInput, usernameOrEmail);
@@ -55,7 +58,7 @@ public class ResetCredentials extends LoginActions {
         clickLink(backToLoginLink);
     }
 
-    public String getInfoMessage() {
-        return getTextFromElement(info);
+    public String getDescription() {
+        return getTextFromElement(description);
     }
 }
