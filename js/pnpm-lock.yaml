@@ -299,8 +299,8 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0
       '@types/tar-fs':
-        specifier: ^2.0.1
-        version: 2.0.1
+        specifier: ^2.0.2
+        version: 2.0.2
       gunzip-maybe:
         specifier: ^1.4.2
         version: 1.4.2
@@ -1944,8 +1944,8 @@ packages:
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
     dev: true
 
-  /@types/tar-fs@2.0.1:
-    resolution: {integrity: sha512-qlsQyIY9sN7p221xHuXKNoMfUenOcvEBN4zI8dGsYbYCqHtTarXOEXSIgUnK+GcR0fZDse6pAIc5pIrCh9NefQ==}
+  /@types/tar-fs@2.0.2:
+    resolution: {integrity: sha512-XuZRAvdo7FbDfgQCNkc8NOdSae5XtG+of2mTSgJ85G4OG0miN4E8BTGT+JBTLO87RQ7iCwsIDCqCsHnf2IaSXA==}
     dependencies:
       '@types/node': 20.4.6
       '@types/tar-stream': 2.2.2
