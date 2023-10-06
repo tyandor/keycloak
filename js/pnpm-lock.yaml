@@ -364,8 +364,8 @@ importers:
         specifier: ^25.0.3
         version: 25.0.3(rollup@3.27.1)
       '@rollup/plugin-inject':
-        specifier: ^5.0.3
-        version: 5.0.3(rollup@3.27.1)
+        specifier: ^5.0.4
+        version: 5.0.4(rollup@3.27.1)
       '@rollup/plugin-node-resolve':
         specifier: ^15.1.0
         version: 15.1.0(rollup@3.27.1)
@@ -1308,11 +1308,11 @@ packages:
       rollup: 3.27.1
     dev: true
 
-  /@rollup/plugin-inject@5.0.3(rollup@3.27.1):
-    resolution: {integrity: sha512-411QlbL+z2yXpRWFXSmw/teQRMkXcAAC8aYTemc15gwJRpvEVDQwoe+N/HTFD8RFG8+88Bme9DK2V9CVm7hJdA==}
+  /@rollup/plugin-inject@5.0.4(rollup@3.27.1):
+    resolution: {integrity: sha512-dM93Nyqp9Ah14jvThFFA30ifjB8cDKk3Bx69M1nIIHGytXug3VrTv5HEuYBzevu45HvZ0ho7t+40bmScmkzZhg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
     peerDependenciesMeta:
       rollup:
         optional: true
