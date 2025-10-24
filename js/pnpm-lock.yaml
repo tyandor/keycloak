@@ -311,8 +311,8 @@ importers:
         specifier: ^22.0.0
         version: 22.0.0
       '@types/gunzip-maybe':
-        specifier: ^1.4.2
-        version: 1.4.2
+        specifier: ^1.4.3
+        version: 1.4.3
       '@types/tar-fs':
         specifier: ^2.0.4
         version: 2.0.4
@@ -1719,8 +1719,8 @@ packages:
   '@types/geojson@7946.0.16':
     resolution: {integrity: sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==}
 
-  '@types/gunzip-maybe@1.4.2':
-    resolution: {integrity: sha512-2uqXZg1jTCKE1Pjbab8qb74+f2+i9h/jz8rQ+jRR+zaNJF75zWwrpbX8/TjF4m56m3KFOg9umHdCJ074KwiVxg==}
+  '@types/gunzip-maybe@1.4.3':
+    resolution: {integrity: sha512-X5KKtC4cSRsRWr6AfNYU5TvlUrLAv0flmtdjJDV7/P6MKZSiIqwiO0GuOKBYAREsxa38vSsDSwPYpNgNWkXK5A==}
 
   '@types/hast@2.3.10':
     resolution: {integrity: sha512-McWspRw8xx8J9HurkVBfYj0xKoE25tOFlHGdx4MJ5xORQrMGZNqJhVQWaIbm6Oyla5kYOXtDiopzKRJzEOkwJw==}
@@ -5837,9 +5837,9 @@ snapshots:
 
   '@types/geojson@7946.0.16': {}
 
-  '@types/gunzip-maybe@1.4.2':
+  '@types/gunzip-maybe@1.4.3':
     dependencies:
-      '@types/node': 24.2.0
+      '@types/node': 24.9.1
 
   '@types/hast@2.3.10':
     dependencies:
