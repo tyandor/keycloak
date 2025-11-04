@@ -148,8 +148,8 @@ importers:
   apps/admin-ui:
     dependencies:
       '@dagrejs/dagre':
-        specifier: ^1.1.5
-        version: 1.1.5
+        specifier: ^1.1.8
+        version: 1.1.8
       '@keycloak/keycloak-admin-client':
         specifier: workspace:*
         version: link:../../libs/keycloak-admin-client
@@ -740,8 +740,8 @@ packages:
     resolution: {integrity: sha512-Vd/9EVDiu6PPJt9yAh6roZP6El1xHrdvIVGjyBsHR0RYwNHgL7FJPyIIW4fANJNG6FtyZfvlRPpFI4ZM/lubvw==}
     engines: {node: '>=18'}
 
-  '@dagrejs/dagre@1.1.5':
-    resolution: {integrity: sha512-Ghgrh08s12DCL5SeiR6AoyE80mQELTWhJBRmXfFoqDiFkR458vPEdgTbbjA0T+9ETNxUblnD0QW55tfdvi5pjQ==}
+  '@dagrejs/dagre@1.1.8':
+    resolution: {integrity: sha512-5SEDlndt4W/LaVzPYJW+bSmSEZc9EzTf8rJ20WCKvjS5EAZAN0b+x0Yww7VMT4R3Wootkg+X9bUfUxazYw6Blw==}
 
   '@dagrejs/graphlib@2.2.4':
     resolution: {integrity: sha512-mepCf/e9+SKYy1d02/UkvSy6+6MoyXhVxP8lLDfA7BPE1X1d4dR0sZznmbM8/XVJ1GPM+Svnx7Xj6ZweByWUkw==}
@@ -2117,6 +2117,7 @@ packages:
   bootstrap@3.4.1:
     resolution: {integrity: sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==}
     engines: {node: '>=6'}
+    deprecated: This version of Bootstrap is no longer supported. Please upgrade to the latest version.
 
   brace-expansion@1.1.12:
     resolution: {integrity: sha512-9T9UjW3r0UW5c1Q7GTwllptXwhvYmEzFhzMfZ9H7FQWt+uZePjZPjBP/W1ZEyZ1twGWom5/56TF4lPcqjnDHcg==}
@@ -4906,7 +4907,7 @@ snapshots:
 
   '@csstools/css-tokenizer@3.0.4': {}
 
-  '@dagrejs/dagre@1.1.5':
+  '@dagrejs/dagre@1.1.8':
     dependencies:
       '@dagrejs/graphlib': 2.2.4
 
@@ -5117,7 +5118,7 @@ snapshots:
 
   '@keycloak/keycloak-admin-ui@file:apps/admin-ui(@babel/runtime@7.28.4)(@types/react@18.3.23)(typescript@5.9.3)':
     dependencies:
-      '@dagrejs/dagre': 1.1.5
+      '@dagrejs/dagre': 1.1.8
       '@keycloak/keycloak-admin-client': link:libs/keycloak-admin-client
       '@keycloak/keycloak-ui-shared': link:libs/ui-shared
       '@patternfly/patternfly': 5.4.2
