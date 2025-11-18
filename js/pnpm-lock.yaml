@@ -266,8 +266,8 @@ importers:
         specifier: ^1.30.2
         version: 1.30.2
       properties-file:
-        specifier: ^3.6.1
-        version: 3.6.1
+        specifier: ^3.6.2
+        version: 3.6.2
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@swc/core@1.13.5)(@types/node@24.9.1)(typescript@5.9.3)
@@ -2117,6 +2117,7 @@ packages:
   bootstrap@3.4.1:
     resolution: {integrity: sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==}
     engines: {node: '>=6'}
+    deprecated: This version of Bootstrap is no longer supported. Please upgrade to the latest version.
 
   brace-expansion@1.1.12:
     resolution: {integrity: sha512-9T9UjW3r0UW5c1Q7GTwllptXwhvYmEzFhzMfZ9H7FQWt+uZePjZPjBP/W1ZEyZ1twGWom5/56TF4lPcqjnDHcg==}
@@ -3600,8 +3601,8 @@ packages:
   proper-lockfile@4.1.2:
     resolution: {integrity: sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==}
 
-  properties-file@3.6.1:
-    resolution: {integrity: sha512-9NUyJcxSqdWcJGRpPq6rT7exQbSQMPs0sK6KTvCJsLrTQRwq+hmt/wIB32ugNZmvEuSPyFO+y4nLK3vX34i5Wg==}
+  properties-file@3.6.2:
+    resolution: {integrity: sha512-ljO1vncugOJ67lGYpKLFMhaQemcqe8v2DVYzHVxPn3swZUJALoaWsWPRZSebUFm6NG/jMqML7B6sqYz3sABuUw==}
 
   property-information@6.5.0:
     resolution: {integrity: sha512-PgTgs/BlvHxOu8QuEN7wi5A0OmXaBcHpmCSTehcs6Uuu9IkDIEo13Hy7n898RHfrQ49vKCoGeWZSaAK01nwVig==}
@@ -7932,7 +7933,7 @@ snapshots:
       retry: 0.12.0
       signal-exit: 3.0.7
 
-  properties-file@3.6.1: {}
+  properties-file@3.6.2: {}
 
   property-information@6.5.0: {}
 
